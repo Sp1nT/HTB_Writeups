@@ -12,7 +12,7 @@ Result: PORTS FOUND: 22, 80
 
 **INFO:** According to title Alert, it should be XSS vulnerability
 
-[SUBDOMAIN FUZZ]
+**SUBDOMAIN FUZZ**
 
 1.  RUN: **ffuf -w
     /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -u
@@ -59,7 +59,7 @@ error));]{.mark}
 
 ![](images/media/image6.png)
 
-Result
+**Result**
 
 ![](images/media/image7.png)
 
@@ -92,7 +92,7 @@ Right click -\> copy link
 ![](images/media/image13.png)
 
 8.  After you click on SEND, you'll get the displayed in Kali VM, the
-    **[HASH Password]{.mark}**
+    **HASH Password**
 
 **%3Cpre%3Ealbert%3A%24apr1%24bMoRBJOg%24igG8WBtQ1xYDTQdLjSWZQ%2F%0A%3C%2Fpre%3E%0A**
 
@@ -111,11 +111,11 @@ Right click -\> copy link
 ![](images/media/image16.png)
 
 -Login with **User:** albert **Password:** manchesterunited and display
-**[user.txt FLAG]{.mark}**
+**user.txt FLAG**
 
 RUN: cat user.txt
 
-**[PRIVILEGE ESCALATION]{.underline}**
+**PRIVILEGE ESCALATION**
 
 12. Transfer **linpeas.sh** to Server RUN: **scp linpeas.sh
     <albert@alert.htb>:**
@@ -130,7 +130,7 @@ RUN: cat user.txt
 
 ![](images/media/image18.png)
 
-Look for interesting paths, like **/opt/ [(NEEDED in STEP 19)]{.mark}**
+Look for interesting paths, like **/opt/ (NEEDED in STEP 19)**
 
 ![](images/media/image19.png)
 
@@ -172,4 +172,4 @@ Open following in Browser: **http://127.0.0.1:8080/monitors/alert.htb**
 
 ![](images/media/image24.png)
 
-[Root.txt FLAG]{.mark}
+**Root.txt FLAG**
