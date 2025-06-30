@@ -15,8 +15,7 @@ Password: judith09**
 
 > **RUN:** **nmap -sV -Pn 10.10.11.41 \<- this did not start**
 >
-> ![](images/media/image1.png){width="2.817707786526684in"
-> height="0.4465223097112861in"}
+> ![](images/media/image1.png)
 
 3.  **Rerun** with verbose set. **RUN:** **nmap -sV -Pn -v 10.10.11.41**
 
