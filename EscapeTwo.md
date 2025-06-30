@@ -166,8 +166,7 @@ RUN: cd ../Desktop
 
 RUN: type user.txt
 
-HYH
-SOLUTION-///-PRIVILEGE_ESCALATION-//////////////////////////////////////////////////////
+**PRIVILEGE_ESCALATION**
 
 8\. INFO: Add sequel.htb and dc01.sequel.htb to /etc/hosts
 
