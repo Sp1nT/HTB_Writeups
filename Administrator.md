@@ -228,9 +228,6 @@ height="2.7083333333333335in"}
 **8**. Look for Ethans account: **DCSync relation found**
 
 **INFO:**
-
-![](images/media/image29.png)
-
 From here: DCSync(bloodhoundenterprise.io)
 
 This edge represents the combination of **GetChanges** and
