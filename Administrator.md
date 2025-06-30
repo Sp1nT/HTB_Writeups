@@ -73,7 +73,7 @@ Benjamin account
 
 ![](images/media/image8.png)
 
-**[USER - FOOTHOLD]{.underline}**
+**USER - FOOTHOLD**
 
 **1**. Use Olivia\'s account, to **change PASSWORD** of **Michael
 account** (Olivia has GenericALL (FULL ACCESS) to Michael\'s account!!)
