@@ -105,7 +105,7 @@ http://haze.htb:8000/en-US/modules/messaging/C:../C:../C:../C:../C:../etc/auth/s
 
 **10.** INFO: Splunksecrets-tool: Get password
 
-**-** 1^st^ **create splunk_secret.txt** and **paste the found PASSWORD
+**-** 1st **create splunk_secret.txt** and **paste the found PASSWORD
 HASH from STEP 8** in it.
 
 ![](images/media/image13.png)
@@ -196,9 +196,9 @@ issue.
 
 **RUN: sudo neo4j console (This starts the service)**
 
-**-**Start **Bloodhound GUI**
+**-** Start **Bloodhound GUI**
 
-**-**Import **20250430182035_bloodhound.zip into** GUI
+**-** Import **20250430182035_bloodhound.zip into** GUI
 
 Start Bloodhound: Login with credentials (previously configured, see
 STEPS in CERTIFIED VM)
@@ -299,10 +299,10 @@ can be modified to get the PASSWORD HASH of the BACKUP
 
 **https://learn.microsoft.com/en-us/windows/win32/adschema/a-msds-groupmsamembership**
 
-**18.** INFO: Take the 1^st^ HASH of STEP 15.7 for the following
+**18.** INFO: Take the 1st HASH of STEP 15.7 for the following
 command**
 
-INFO: Get JSON-files 2^nd^ time
+INFO: Get JSON-files 2nd time
 
 **RUN in Kali VM:** **bloodhound-python -u \'Haze-IT-Backup\$\'
 \--hashes \':a70df6599d5eab1502b38f9c1c3fd828\' -d haze.htb -dc
@@ -314,7 +314,7 @@ dc01.haze.htb -ns 10.10.11.61 -c all \--zip**
 
 **19.** INFO: Check Haze-IT-Backup account
 
-1^st^ Open Haze-IT-Backup account: Go to **OUTBOUND OBJECT CONTROL-\>
+1st Open Haze-IT-Backup account: Go to **OUTBOUND OBJECT CONTROL-\>
 First degree object control**
 
 ![](images/media/image29.png)
@@ -597,7 +597,7 @@ C:\\Windows\\system32\>**
 
 **35.** INFO: Create Splunk BOUNCE SHELL
 
-**[SeImpersonatePrivilege]{.underline}** is a privilege in Windows that
+**SeImpersonatePrivilege** is a privilege in Windows that
 gives a process the ability to **\"Impersonation\".**\
 Processes with this permission can impersonate the identity of the user
 corresponding to a token after obtaining a token handle, but cannot
@@ -609,7 +609,7 @@ HOW TO use this group:
 
 - DOWNLOAD **GodPotato-NET4.exe** to Kali VM
 
-[**https://github.com/BeichenDream/GodPotato/releases**](https://github.com/BeichenDream/GodPotato/releases)
+**https://github.com/BeichenDream/GodPotato/releases** (https://github.com/BeichenDream/GodPotato/releases)
 
 **RUN loggedin with POWERSHELL: cd C:/**
 
