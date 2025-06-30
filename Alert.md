@@ -172,4 +172,4 @@ Open following in Browser: **http://127.0.0.1:8080/monitors/alert.htb**
 
 ![](images/media/image24.png)
 
-**Root.txt FLAG**
+19. Open in Browser: 127.0.0.1:8080/monitors/root.txt to get **Root.txt FLAG**
