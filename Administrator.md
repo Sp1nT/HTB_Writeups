@@ -55,7 +55,7 @@ file**
 ![](images/media/image6.png)
 
 \- Login with **USER:** **neo4j** and **PASSWORD:** **as163452 (Both
-preconfigured, see STEPS in CERTIFIED MACHINE)**
+preconfigured, see GUIDE STEPS in https://www.kali.org/tools/bloodhound/)**
 
 \- Import **JSON-files**
 
