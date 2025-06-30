@@ -35,9 +35,9 @@ RUN: **sudo nano /ets/hosts**
 
 ![](images/media/image3.png)
 
-4\. INFO: Try SMB first. SMB file leak! USE HYH ALTERNATIVE!!
+4\. INFO: Try SMB first. SMB file leak!
 
-HYH ALTERNATIVE: **smbclient -L //10.10.11.51 -U rose**
+ALTERNATIVE: **smbclient -L //10.10.11.51 -U rose**
 
 ![](images/media/image4.png)
 
