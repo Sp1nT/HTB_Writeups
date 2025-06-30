@@ -214,8 +214,7 @@ set for the operation.
 \"UXLCI5iETUsIBoFVTj8yQFKoHjXmb\" -d \"Administrator.htb\" \--dc-ip
 10.10.11.42**
 
-![](images/media/image27.png){width="6.2972222222222225in"
-height="2.7083333333333335in"}
+![](images/media/image27.png)
 
 **7.2** Crack it with john
 
