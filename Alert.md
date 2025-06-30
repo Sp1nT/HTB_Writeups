@@ -12,7 +12,7 @@ Result: PORTS FOUND: 22, 80
 
 **INFO:** According to title Alert, it should be XSS vulnerability
 
-**[SUBDOMAIN FUZZ]{.underline}**
+[SUBDOMAIN FUZZ]
 
 1.  RUN: **ffuf -w
     /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -u
@@ -84,9 +84,7 @@ Easier to read with <https://www.urldecoder.org/>
 
 Right click -\> copy link
 
-6.  ![](images/media/image11.png){width="4.119104330708661in"
-    height="3.6359995625546806in"}![](images/media/image12.png){width="4.11875in"
-    height="1.044669728783902in"}
+6.  ![](images/media/image11.png)![](images/media/image12.png)
 
 7.  Upload copied LINK to **Contact** on
     **<http://alert.htb>/index.php?page=contact**
