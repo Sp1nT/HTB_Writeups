@@ -18,7 +18,7 @@ haze.htb**
 
 **Found: Host: DC01 and SERVICE: Splunk**
 
-**3.**INFO: Add dc01.haze.htb to /etc/hosts
+**3.** INFO: Add dc01.haze.htb to /etc/hosts
 
 **RUN:** **sudo nano /etc/hosts**
 
