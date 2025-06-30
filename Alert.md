@@ -4,8 +4,7 @@
 
 Result: PORTS FOUND: 22, 80
 
-![](images/media/image1.png){width="3.5104669728783904in"
-height="1.2959995625546807in"}
+![](images/media/image1.png)
 
 2.  Open **HTTP://alert.htb:80**
 
