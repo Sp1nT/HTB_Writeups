@@ -1,1 +1,1 @@
-# Retired HTB_Writeups
+# HTB_Writeups of retired machines
