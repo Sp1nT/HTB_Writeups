@@ -79,7 +79,7 @@ http://monitorsthree.htb -H \"Host:FUZZ.monitorsthree.htb\" -ac**
 Since we found that the website RUBY ON RAILS (api.heal.htb) used it, we
 searched and got it's config file address
 
-- Mod 1^st^ line: **GET /download?filename=../../config/database.yml
+- Mod 1st line: **GET /download?filename=../../config/database.yml
   HTTP/1.1**
 
 - **Click Send**
@@ -147,7 +147,7 @@ RUN: **zip zipname config.xml php-rev.php**
 
 ![](images/media/image24.png)
 
-Click 3^rd^ step and select the file **zipname.zip**
+Click 3rd step and select the file **zipname.zip**
 
 ![](images/media/image25.png)
 
@@ -194,11 +194,11 @@ same as the hash above = 147258369
 
 **There is nothing that can be used in the database**
 
-17. 1^st^ FLAG: Cat user.txt
+17. 1st FLAG: Cat user.txt
 
 ![](images/media/image33.png)
 
-**[PRIVILEGE ESCALATION]{.underline}**
+**PRIVILEGE ESCALATION**
 
 1.  Transfer Linpeas.sh with SCP-COMMAND to SERVER and let it run.
 
