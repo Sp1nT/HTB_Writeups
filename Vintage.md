@@ -21,7 +21,7 @@ administrator.htb**
 
 Found **LDAP SERVER: PORT 3268**
 
-Found **Kerberos service: PORT 88 ?right port?**
+Found **Kerberos service**
 
 Found **WinRM service: PORT 5985**
 
@@ -451,8 +451,6 @@ L.BIANCHI_ADM -dc-ip 10.10.11.45 -k \'vintage.htb/svc_sql:Zer0the0ne\'**
 ![](images/media/image33.png)
 
 **R9.2.**
-
-INFO:
 
 **RUN: export
 KRB5CCNAME=L.BIANCHI_ADM@cifs_dc01.vintage.htb@VINTAGE.HTB.ccache**
