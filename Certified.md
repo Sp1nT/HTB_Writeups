@@ -13,7 +13,7 @@ Password: judith09**
 
 2.  Nmap error
 
-> **RUN:** **nmap -sSVC -Pn -p- 10.10.11.41 \ this did not start**
+> **RUN:** **nmap -sSVC -Pn -p- 10.10.11.41  this did not start**
 >
 > ![](Certified/media/image1.png)
 
