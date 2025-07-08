@@ -34,7 +34,7 @@ http://monitorsthree.htb -H \"Host:FUZZ.monitorsthree.htb\" -ac**
 
 ![](Heal/media/image5.png)
 
-6.  [Add to **take-survey.heal.htb** to **/etc/hosts** file]{.mark}
+6.  Add to **take-survey.heal.htb** to **/etc/hosts** file
 
 7.  Open the hidden page
 
