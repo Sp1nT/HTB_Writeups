@@ -42,13 +42,9 @@ RUN: **sudo nano /ets/hosts**
 
 files with LibreOFFICE or gnumeric in LINUX
 
-Logged in smb: \\> RUN: **get accounting_2024.xlsx** (ALTERNATIVE
+Logged in smb: \\> RUN: **get accounting_2024.xlsx** 
 
-COMMAND =\> see CN-SEC.COM solution)
-
-Logged in smb: \\> RUN: **get accounts.xlsx** (ALTERNATIVE COMMAND =\>
-
-see CN-SEC.COM solution)
+Logged in smb: \\> RUN: **get accounts.xlsx** 
 
 RESULT: FOUND USER:PASSWORD =\> sa:MSSQLP@ssw0rd!
 
