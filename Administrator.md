@@ -233,8 +233,6 @@ set for the operation.
 
 
 
-From here: DCSync(bloodhoundenterprise.io)
-
 This edge represents the combination of **GetChanges** and
 **GetChangesAll**. The **combination of these two permissions grants**
 the principal the ability to perform a **DCSync attack**.
