@@ -76,8 +76,7 @@ Password: judith09**
 >
 > ![](Certified/media/image6.png)
 >
-> ![](Certified/media/image7.png){width="5.0in"
-> height="1.462810586176728in"}
+> ![](Certified/media/image7.png)
 >
 > **(this fixed the ERROR) RUN:** **sudo ntpdate 10.10.11.41**
 >
@@ -151,7 +150,7 @@ Password: judith09**
 
 > ![](Certified/media/image18.png)
 
-**[User - Foothold]{.underline}**
+**User - Foothold**
 
 1.  Change the **OWNER** of **Management group**
 
