@@ -28,12 +28,12 @@ Result: PORTS FOUND: 22, 80
 
 - Right click -\> **Send to Repeater**
 
-Replace 1^st^ line with: **GET
+Replace 1st line with: **GET
 /download?ticket=../../../../../../etc/passwd HTTP/1.1**
 
 ![](Titanic/media/image4.png)
 
-1^st^ line Replaced (Result: see screenshot below)
+1st line Replaced (Result: see screenshot below)
 
 - Push SEND
 
@@ -67,7 +67,7 @@ USER.txt FLAG
 
 **CRACK PASSWORD**
 
-7.  Replace 1^st^ line with db
+7.  Replace 1st line with db
 
 Search for USER: developer
 
