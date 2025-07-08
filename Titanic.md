@@ -8,7 +8,7 @@ RUN: sudo nano /etc/hosts
 
 Result: PORTS FOUND: 22, 80
 
-![](images/media/image1.png)
+![](Titanic/media/image1.png)
 
 3.  Add 10.10.11.55 titanic.htb to /etc/hosts file
 
@@ -16,7 +16,7 @@ Result: PORTS FOUND: 22, 80
 
 5.  Open <http://titanic.htb:80>
 
-![](images/media/image2.png)
+![](Titanic/media/image2.png)
 
 - Start Burpsuite, activate INTERCEPT
 
@@ -24,28 +24,28 @@ Result: PORTS FOUND: 22, 80
 
 6.  **Push** **FORWARD**
 
-![](images/media/image3.png)
+![](Titanic/media/image3.png)
 
 - Right click -\> **Send to Repeater**
 
 Replace 1^st^ line with: **GET
 /download?ticket=../../../../../../etc/passwd HTTP/1.1**
 
-![](images/media/image4.png)
+![](Titanic/media/image4.png)
 
 1^st^ line Replaced (Result: see screenshot below)
 
 - Push SEND
 
-![](images/media/image5.png)
+![](Titanic/media/image5.png)
 
 Result
 
-![](images/media/image6.png)
+![](Titanic/media/image6.png)
 
 USER.txt FLAG
 
-![](images/media/image7.png)
+![](Titanic/media/image7.png)
 
 **SUBDOMAIN FUZZ**
 
@@ -53,15 +53,15 @@ USER.txt FLAG
     /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -u
     http://titanic.htb -H \"Host:FUZZ.titanic.htb\" -ac**
 
-> ![](images/media/image8.png)
+> ![](Titanic/media/image8.png)
 >
 > Add **dev.titanic.htb** to **/etc/hosts** file
 
-![](images/media/image9.png)
+![](Titanic/media/image9.png)
 
 2.  Open [**http://dev.titanic.htb**](http://dev.titanic.htb)
 
-> ![](images/media/image10.png)
+> ![](Titanic/media/image10.png)
 
 3.  Gitea DB is generally in **/data/gitea.db**
 
@@ -71,13 +71,13 @@ USER.txt FLAG
 
 Search for USER: developer
 
-![](images/media/image11.png)
+![](Titanic/media/image11.png)
 
 8.  Password HASH (**blue highlighted**)
 
 Salt (**red squares**)
 
-![](images/media/image12.png)
+![](Titanic/media/image12.png)
 
 9.  **INFO:** Use this script to crack (Target hash + salt) or use
     Hashcat
@@ -154,7 +154,7 @@ find_matching_password(dictionary_file, target_hash, salt)
 
 Should look like this
 
-![](images/media/image13.png)
+![](Titanic/media/image13.png)
 
 10. Put Target-hash and salt in the script (lines 30,31)
 
@@ -162,11 +162,11 @@ Should look like this
 
 **PASSWORD: 25282528 found for USER: developer**
 
-![](images/media/image14.png)
+![](Titanic/media/image14.png)
 
 Password found
 
-![](images/media/image15.png)
+![](Titanic/media/image15.png)
 
 **ROOT**
 
@@ -188,25 +188,25 @@ Password found
 > **INFO:** This directory can be found, if you run: **find / -writable
 > -type d 2\>/dev/null**
 >
-> ![](images/media/image16.png)
+> ![](Titanic/media/image16.png)
 >
 > This causes **magick** (under root permissions) to **read root.txt**
 
 - Put it into a **Python-script**, e.g. **script.py** or paste it
   directly into the terminal, as below.
 
-> ![](images/media/image17.png)
+> ![](Titanic/media/image17.png)
 
 - List files in directory
 
-![](images/media/image18.png)
+![](Titanic/media/image18.png)
 
 - Modify original directory content. E.G. copy a jpg file.
 
-![](images/media/image19.png)
+![](Titanic/media/image19.png)
 
 - Check if **libxcb.so.1** and **root flag** is there
 
 - Display **root flag**
 
-![](images/media/image20.png)
+![](Titanic/media/image20.png)
