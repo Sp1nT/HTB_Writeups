@@ -82,7 +82,7 @@ Password: judith09**
 >
 > ![](Certified/media/image8.png)
 >
-> **WORKING** (NO ERRORS) at **2^nd^ Rerun**:
+> **WORKING** (NO ERRORS) at **2nd Rerun**:
 > **bloodhound-python -u judith.mader -p \'judith09\' -c All -d
 > certified.htb -ns 10.10.11.41**
 >
