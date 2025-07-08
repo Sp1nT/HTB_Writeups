@@ -71,7 +71,7 @@ Password: judith09**
 >
 > **RUN:** **sudo timedatectl set-ntp true**
 >
-> **1^st^ Rerun:** **bloodhound-python -u judith.mader -p \'judith09\'
+> **1st Rerun:** **bloodhound-python -u judith.mader -p \'judith09\'
 > -c All -d certified.htb -ns 10.10.11.41**
 >
 > ![](Certified/media/image6.png)
