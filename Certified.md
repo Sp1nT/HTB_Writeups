@@ -146,7 +146,7 @@ Password: judith09**
 >
 > ![](Certified/media/image17.png)
 
-10. Lone's overview INFO: Look for Domain Controller
+10. Overview INFO: Look for Domain Controller
 
 > ![](Certified/media/image18.png)
 
